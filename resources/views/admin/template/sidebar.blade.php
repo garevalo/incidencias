@@ -6,14 +6,6 @@
 				<ul class="nav nav-list">
 
 					<li class="<?= ($menu==1)?'active open':''?>">
-						<a href="{{url('paciente')}}">
-							<i class="menu-icon fa fa-pencil-square-o"></i>
-							<span class="menu-text"> Pacientes </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li class="<?= ($menu==2)?'active open':''?>">
 						<a href="{{url('usuario')}}">
 							<i class="menu-icon fa fa-users"></i>
 							<span class="menu-text"> Usuarios </span>
@@ -21,10 +13,10 @@
 
 						<b class="arrow"></b>
 					</li>
-					<li class="<?= ($menu==3)?'active open':''?>">
+					<li class="<?= ($menu==2)?'active open':''?>">
 						<a href="{{url('asistencia')}}">
 							<span class="menu-icon glyphicon glyphicon-time" aria-hidden="true"></span>
-							<span class="menu-text"> Asistencias </span>
+							<span class="menu-text"> Incidencias </span>
 						</a>
 
 						<b class="arrow"></b>

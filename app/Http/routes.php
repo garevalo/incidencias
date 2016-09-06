@@ -7,10 +7,6 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function() {
 
-	Route::get('/', function(){
-		return redirect('/paciente');
-	});
-
 	Route::get('blank', function () {
 	 return view('admin.blank');
 	});
@@ -22,9 +18,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/modal/{modal}/{id?}', 'UsuarioController@modal');
 	Route::get('usuario/getdata/{id?}', 'UsuarioController@dataUser');
 	
-	Route::group(['middleware' => 'role'], function() {
+	//Route::group(['middleware' => 'role'], function() {
 		Route::resource('usuario', 'UsuarioController');
-	});
+	//});
 
 });
 

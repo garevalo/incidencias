@@ -16,12 +16,12 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(Request $request)
     {   
-      if ($request->is('paciente') || $request->is('paciente/*')) {
+      if ($request->is('usuario') || $request->is('usuario/*')) {
         $this->menu = 1 ;
       }
-      elseif($request->is('usuario') || $request->is('usuario/*')){
+      /*elseif($request->is('usuario') || $request->is('usuario/*')){
         $this->menu = 2 ;
-      }
+      }*/
       view()->share('menu', $this->menu);
     }
 
