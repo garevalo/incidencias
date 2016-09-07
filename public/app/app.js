@@ -1,7 +1,7 @@
 var app = angular.module('apprayuela', [],function($interpolateProvider){
 	$interpolateProvider.startSymbol('<%');
 	$interpolateProvider.endSymbol('%>');
-}).constant('API_URL', 'http://demo.app/');
+}).constant('API_URL', 'http://incidencias.app/');
 
 app.directive('calendar', function () {
     return {

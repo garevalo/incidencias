@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function() {
 	
 	//Route::group(['middleware' => 'role'], function() {
 		Route::resource('usuario', 'UsuarioController');
+		Route::resource('incidencia', 'IncidenciaController');
 	//});
 
 });

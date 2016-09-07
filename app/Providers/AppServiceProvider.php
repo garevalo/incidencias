@@ -19,9 +19,9 @@ class AppServiceProvider extends ServiceProvider
       if ($request->is('usuario') || $request->is('usuario/*')) {
         $this->menu = 1 ;
       }
-      /*elseif($request->is('usuario') || $request->is('usuario/*')){
+      elseif($request->is('incidencia') || $request->is('incidencia/*')){
         $this->menu = 2 ;
-      }*/
+      }
       view()->share('menu', $this->menu);
     }
 
