@@ -20,7 +20,6 @@ class UsuarioController extends Controller
       return view("admin.usuarios.usuarios",$data);
     }
 
-
     public function perfil(){
 
       $data['titulo'] = "Perfil de Usuario";  
