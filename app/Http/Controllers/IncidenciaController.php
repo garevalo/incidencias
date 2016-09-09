@@ -27,7 +27,8 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        //
+        $data['titulo'] = "Registrar Incidencia";  
+        return view("admin.incidencias.nuevo",$data);
     }
 
     /**

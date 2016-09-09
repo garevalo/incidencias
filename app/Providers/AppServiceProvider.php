@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
 
     private $menu=1;
+    private $submenu;
 
     public function boot(Request $request)
     {   
@@ -21,8 +22,14 @@ class AppServiceProvider extends ServiceProvider
       }
       elseif($request->is('incidencia') || $request->is('incidencia/*')){
         $this->menu = 2 ;
+        if($request->is('incidencia/create')){
+            $this->submenu = '2.1' ;
+        }
+        elseif($request->is('incidencia')){
+            $this->submenu = '2.2' ;
+        }
       }
-      view()->share('menu', $this->menu);
+      view()->share(['menu'=>$this->menu,'submenu'=>$this->submenu]);
     }
 
     /**

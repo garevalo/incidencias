@@ -3,7 +3,7 @@
 		<div class="footer-content">
 			<span class="bigger-120">
 				<span class="blue bolder">Admin</span>
-				Rayuela &copy; 2016
+				Incidencias &copy; 2016
 			</span>
 
 			&nbsp; &nbsp;
