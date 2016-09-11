@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Componente;
+use App\User;
 
 class IncidenciaController extends Controller
 {
@@ -18,7 +19,7 @@ class IncidenciaController extends Controller
     public function index()
     {
         
-       return view("admin.incidencias.incidencias",$data);
+       return view("admin.incidencias.incidencias");
     }
 
     /**
@@ -27,10 +28,11 @@ class IncidenciaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-
+    {
+        $data['tecnicos']     = User::where('idrol', 2)->get();
+        //print_r($data['tecnicos']);
         $data['componentes']  = Componente::all();    
-        $data['titulo'] = "Registrar Incidencia";  
+        $data['titulo']       = "Registrar Incidencia";
         return view("admin.incidencias.nuevo",$data);
     }
 

@@ -101,6 +101,15 @@
 													<label for="form-field-select-1">Descripción para el servicio</label>
 													<textarea id="form-field-select-1" class="form-control input-sm" rows="3" name="descripcion_servicio"></textarea>
 												</div>
+												<div class="col-lg-4">
+													<label>Tipo</label>
+													<select class="form-control input-sm" name="tipo-equipo">
+														<option value="">Seleccione Tipo de equipo</option>
+														<option value="pc">PC</option>
+														<option value="laptop">Laptop</option>
+														<option value="tablet">Tablet</option>
+													</select>
+												</div>
 											</div>
 											<div class="form-group has-info">
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -132,9 +141,7 @@
 									</div>
 									<div class="widget-body">
 										<div class="widget-main padding-6">
-											<?php 
-											//$bloqueComponente = array_chunk($componentes, 2);
-											//print_r($componentes);
+											<?php
 											foreach ($componentes as $key => $componente) { ?>
 											<?php if($key%2==0){ ?>	
 											<div class="form-group has-info">
@@ -143,8 +150,8 @@
 													<div class="col-lg-6">
 														<div class="checkbox">
 															<label class="block">
-																<input type="checkbox" class="ace ace-checkbox-2" name="componente[]">
-																<span class="lbl bigger-120"> <?= $componente->componente?></span>
+																<input type="checkbox" class="ace ace-checkbox-2" name="componente[]" value="{{$componente->idcomponente}}">
+																<span class="lbl"> <?= $componente->componente?></span>
 															</label>
 														</div>
 													</div>
@@ -166,18 +173,28 @@
 						<div class="row">
 							<div class="col-lg-6">
 							<div class="widget-box">
-								<div class="widget-header">
-									<h4 class="widget-title">Asignar Técnico</h4>
-								</div>
+								
 								<div class="widget-body">
 									<div class="widget-main padding-6">
 
 										<div class="form-group has-info">
-											<div class="col-lg-8">
+											<div class="col-lg-6">
+												<label for="form-field-select-1">Asignar Técnico</label>
 												<select id="inputInfo" class="form-control input-sm" name="tecnico">
 													<option value="">Selecciones Técnico</option>
-													<option>Tecnico 1</option>
-													<option>Tecnico 2</option>
+													@foreach($tecnicos as $tecnico)
+														<option value="{{$tecnico->id}}">{{$tecnico->name.' '.$tecnico->apellido}}</option>
+													@endforeach
+												</select>
+											</div>
+
+											<div class="col-lg-6">
+												<label for="form-field-select-1">Prioridad</label>
+												<select id="inputInfo" class="form-control input-sm" name="prioridad">
+													<option value="">Selecciones prioridad</option>
+													<option value="baja">Baja</option>
+													<option value="media">Media</option>
+													<option value="alta">Alta</option>
 												</select>
 											</div>
 										</div>	
