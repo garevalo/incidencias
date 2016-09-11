@@ -71,7 +71,12 @@ app.controller('UsuariosController', function ($scope, $compile, $http, API_URL,
             console.log(response);
             //alert(response.nombre);
             if (response === true) {
-                alert("Se registro usuario correctamente");
+                $.gritter.add({
+                        title: 'Notificación',
+                        text: '¡El Usuario se guardó correctamente!',
+                        //sticky: true,
+                        class_name: 'gritter-info'
+                });
                 $('#modalEdit').modal('hide');
                 var table = $('#users-table').DataTable();
                 table.ajax.reload();
@@ -109,7 +114,17 @@ app.controller('UsuariosController', function ($scope, $compile, $http, API_URL,
             console.log(response);
 
             if (response === true) {
-                alert("Se actualizó usuario correctamente");
+                //alert("Se actualizó usuario correctamente");
+                //$('#gritter-center').on(ace.click_event, function(){
+                    $.gritter.add({
+                        title: 'Notificación',
+                        text: '!El Usuario se actualizó correctamente',
+                        //sticky: true,
+                        class_name: 'gritter-info'
+                    });
+            
+                    //return false;
+                //});
                 $('#modalEdit').modal('hide');
                 var table = $('#users-table').DataTable();
                 table.ajax.reload();

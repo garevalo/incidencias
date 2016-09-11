@@ -23,14 +23,14 @@
 				<li class="<?= ($submenu==2.1)?'active':''?>">
 					<a href="{{url('incidencia/create')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Nueva Incidencias
+						Nueva Incidencia
 					</a>
 					<b class="arrow"></b>
 				</li>
 				<li class="<?= ($submenu==2.2)?'active':''?>">
 					<a href="{{url('incidencia')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Lista de Incidencia
+						Lista de Incidencias
 					</a>
 					<b class="arrow"></b>
 				</li>

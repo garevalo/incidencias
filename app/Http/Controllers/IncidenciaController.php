@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Componente;
 
 class IncidenciaController extends Controller
 {
@@ -16,8 +17,8 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $data['titulo'] = "Lista de Incidencias";  
-        return view("admin.incidencias.incidencias",$data);
+        
+       return view("admin.incidencias.incidencias",$data);
     }
 
     /**
@@ -26,7 +27,9 @@ class IncidenciaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+
+        $data['componentes']  = Componente::all();    
         $data['titulo'] = "Registrar Incidencia";  
         return view("admin.incidencias.nuevo",$data);
     }
@@ -39,7 +42,7 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        print_r($request->all());
     }
 
     /**

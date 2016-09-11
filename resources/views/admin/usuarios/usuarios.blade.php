@@ -4,7 +4,7 @@
 
 @section("header")
 	@parent
-	
+	<link rel="stylesheet" href="{{ asset("css/jquery.gritter.min.css") }}" />
 @endsection
 
 
@@ -83,24 +83,12 @@
 	   return factory;
 
 	});
-
-	$('#gritter-without-image').on(ace.click_event, function(){
-		$.gritter.add({
-			// (string | mandatory) the heading of the notification
-			title: 'This is a notice without an image!',
-			// (string | mandatory) the text inside the notification
-			text: 'This will fade out after a certain amount of time. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" class="orange">magnis dis parturient</a> montes, nascetur ridiculus mus.',
-			class_name: 'gritter-success' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
-		});
-
-		return false;
-	});
-
 	</script>
 
 	<script src="{{ asset("js/jquery.dataTables.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.dataTables.bootstrap.min.js") }}"></script>
 
 	<script src="{{ asset("app/controllers/usuarios.js") }}"></script>
+	<script src="{{ asset("js/jquery.gritter.min.js") }}"></script>
 
 @endsection
