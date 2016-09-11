@@ -36,7 +36,7 @@
 
 			<div class="widget-body ">
 				<form class="form-horizontal" method="POST" action="{{url('incidencia')}}">
-				{{ csrf_field()  }}
+				
 					<div class="widget-main">
 						
 

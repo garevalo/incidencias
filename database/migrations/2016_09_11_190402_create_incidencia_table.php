@@ -23,7 +23,9 @@ class CreateIncidenciaTable extends Migration
             $table->string('tipo', 40);
             $table->string('condicion', 40);
             $table->string('prioridad', 40);
-
+            $table->integer('estado');
+            $table->string('diagnostico',200);
+            $table->string('descripcion_tecnico',200);
             $table->timestamps();
         });
     }
