@@ -108,13 +108,13 @@
 												</div>
 												<div class="col-lg-4">
 													<label>Tipo</label>
-													<select class="form-control input-sm" name="tipo-equipo">
+													<select class="form-control input-sm" name="tipo_equipo">
 														<option value="">Seleccione Tipo de equipo</option>
 														<option value="pc">PC</option>
 														<option value="laptop">Laptop</option>
 														<option value="tablet">Tablet</option>
 													</select>
-													<div id=" " class="help-block orange2">{{$errors->first('tipo-equipo')}}</div>
+													<div id=" " class="help-block orange2">{{$errors->first('tipo_equipo')}}</div>
 												</div>
 											</div>
 											<div class="form-group has-info">
@@ -170,7 +170,8 @@
 											<?php if($key%2!=0){ ?>	
 											</div>
 											<?php } ?>
-											<?php } ?>	
+											<?php } ?>
+												<div id=" " class="help-block orange2">{{$errors->first('componente')}}</div>
 										</div>
 									</div>
 								</div>	

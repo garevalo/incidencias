@@ -8,6 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Componente;
 use App\User;
+use App\Cliente;
+use App\Incidencia;
+use App\IncidenciaComponente;
+use DB;
 use Validator;
 
 class IncidenciaController extends Controller
@@ -51,15 +55,15 @@ class IncidenciaController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'cliente'    => 'required|min:4|max:40|alpha',
+            'cliente'    => 'required|min:4|max:40|string',
             'ruc_dni'    => 'required|digits_between:8,11|numeric',
             'telefono'   => 'required|digits_between:7,9|numeric|unique:clientes,telefono',
-            'direccion'  => 'required|min:4|max:40|alpha_num',
+            'direccion'  => 'required|min:4|max:40|string',
             'marca'      => 'required|min:2|max:40|alpha_num',
             'modelo'      => 'required|min:2|max:40|alpha_num',
             'serie'       => 'required|min:2|max:40|alpha_num',
-            'descripcion_servicio'       => 'required|min:2|max:40|alpha_num',
-            'tipo-equipo'       => 'required|min:2|max:20|alpha',
+            'descripcion_servicio'       => 'required|min:2|max:40|string',
+            'tipo_equipo'       => 'required|min:2|max:20|alpha',
             'condicion'       => 'required|min:2|max:20|alpha',
             'componente'      => 'required',
             'tecnico'       => 'required|numeric',
@@ -67,12 +71,50 @@ class IncidenciaController extends Controller
         ],$messages);
 
         if ($validator->fails()) {
-            return redirect('incidencia/create')
-                            ->withErrors($validator)
-                            ->withInput();
+            return redirect('incidencia/create')->withErrors($validator)->withInput();
         }else{
-            print_r($request->all());
-            print_r($request->componente);
+
+            // DB::transaction(function () {
+                $Cliente = new Cliente;
+                $Cliente->nombre     = $request->cliente;
+                $Cliente->dni_ruc     = $request->ruc_dni;
+                $Cliente->telefono    = $request->telefono;
+                $Cliente->direccion   = $request->direccion;
+
+                if ($Cliente->save()) {
+
+                    $idcliente = $Cliente::select('idcliente')->orderBy('idcliente', 'desc')->take(1)->first();
+
+                    $Incidencia = new Incidencia;
+                    $Incidencia->idcliente = $idcliente->idcliente;
+                    $Incidencia->marca = $request->marca;
+                    $Incidencia->modelo = $request->modelo;
+                    $Incidencia->serie = $request->serie;
+                    $Incidencia->descripcion = $request->descripcion_servicio;
+                    $Incidencia->tipo = $request->tipo_equipo;
+                    $Incidencia->condicion = $request->condicion;
+                    $Incidencia->prioridad = $request->prioridad;
+                    $Incidencia->idtecnico = $request->tecnico;
+                    $Incidencia->estado = 1;
+
+                    if ($Incidencia->save()) {
+
+                        $idincidencia = $Incidencia::select('idincidencia')->orderBy('idincidencia', 'desc')->take(1)->first();
+                        foreach ($request->componente as $key => $componente) {
+                            $IncidenciaComponente = new IncidenciaComponente;
+                            $IncidenciaComponente->idcomponente = $componente;
+                            $IncidenciaComponente->idincidencia = $idincidencia->idincidencia;
+                            $IncidenciaComponente->serie = $request->serie_componente[$componente];
+                            $IncidenciaComponente->save();
+                        }
+                    }
+
+                }
+
+           // });
+
+            return redirect('incidencia');
+
         }
 
     }

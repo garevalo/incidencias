@@ -19,11 +19,12 @@ class CreateIncidenciaTable extends Migration
             $table->string('marca', 40);
             $table->string('modelo', 40);
             $table->string('serie', 40);
-            $table->string('decripcion', 200);
+            $table->string('descripcion', 200);
             $table->string('tipo', 40);
             $table->string('condicion', 40);
             $table->string('prioridad', 40);
             $table->integer('estado');
+            $table->integer('idtecnico');
             $table->string('diagnostico',200);
             $table->string('descripcion_tecnico',200);
             $table->timestamps();
