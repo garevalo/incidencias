@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Componente;
 use App\User;
+use Validator;
 
 class IncidenciaController extends Controller
 {
@@ -18,7 +19,7 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        
+
        return view("admin.incidencias.incidencias");
     }
 
@@ -31,7 +32,7 @@ class IncidenciaController extends Controller
     {
         $data['tecnicos']     = User::where('idrol', 2)->get();
         //print_r($data['tecnicos']);
-        $data['componentes']  = Componente::all();    
+        $data['componentes']  = Componente::all();
         $data['titulo']       = "Registrar Incidencia";
         return view("admin.incidencias.nuevo",$data);
     }
@@ -44,7 +45,36 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        print_r($request->all());
+
+        $messages = [
+            'digits_between' => 'El campo debe tener entre :min - :max dígitos'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'cliente'    => 'required|min:4|max:40|alpha',
+            'ruc_dni'    => 'required|digits_between:8,11|numeric',
+            'telefono'   => 'required|digits_between:7,9|numeric|unique:clientes,telefono',
+            'direccion'  => 'required|min:4|max:40|alpha_num',
+            'marca'      => 'required|min:2|max:40|alpha_num',
+            'modelo'      => 'required|min:2|max:40|alpha_num',
+            'serie'       => 'required|min:2|max:40|alpha_num',
+            'descripcion_servicio'       => 'required|min:2|max:40|alpha_num',
+            'tipo-equipo'       => 'required|min:2|max:20|alpha',
+            'condicion'       => 'required|min:2|max:20|alpha',
+            'componente'      => 'required',
+            'tecnico'       => 'required|numeric',
+            'prioridad'       => 'required|min:2|max:20|alpha',
+        ],$messages);
+
+        if ($validator->fails()) {
+            return redirect('incidencia/create')
+                            ->withErrors($validator)
+                            ->withInput();
+        }else{
+            print_r($request->all());
+            print_r($request->componente);
+        }
+
     }
 
     /**

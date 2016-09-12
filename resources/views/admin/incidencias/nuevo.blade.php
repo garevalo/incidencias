@@ -18,16 +18,13 @@
 		<div class="widget-box widget-color-blue">
 			<div class="widget-header">
 				<h4 class="widget-title">Nueva Incidencia</h4>
-
 				<span class="widget-toolbar">
 					<a href="#" data-action="reload">
 						<i class="ace-icon fa fa-refresh"></i>
 					</a>
-
 					<a href="#" data-action="collapse">
 						<i class="ace-icon fa fa-chevron-up"></i>
 					</a>
-
 					<a href="#" data-action="close">
 						<i class="ace-icon fa fa-times"></i>
 					</a>
@@ -36,7 +33,7 @@
 
 			<div class="widget-body ">
 				<form class="form-horizontal" method="POST" action="{{url('incidencia')}}">
-				
+				{{ csrf_field()  }}
 					<div class="widget-main">
 						
 
@@ -51,21 +48,25 @@
 											<div class="form-group has-info">
 												<div class="col-lg-3 ">
 													<label for="inputInfo">Cliente</label>
-													<input type="text" name="cliente" id="inputInfo" class="form-control input-sm">
+													<input type="text" name="cliente" id="inputInfo" class="form-control input-sm" value="{{ old('cliente') }}">
+													<div id=" " class="help-block orange2">{{$errors->first('cliente')}}</div>
 												</div>
 												<div class="col-lg-3">
 													<label for="form-field-select-3">Dni o Ruc</label>
-													<input type="text" name="ruc" id="form-field-select-1" class="form-control input-sm">
+													<input type="text" name="ruc_dni" id="form-field-select-1" class="form-control input-sm" value="{{old('ruc_dni')}}">
+													<div id=" " class="help-block orange2">{{$errors->first('ruc_dni')}}</div>
 												</div>
 												<div class="col-lg-3">
 													<label for="form-field-select-2">Teléfono</label>
-													<input type="text" name="telefono" id="form-field-select-1" class="form-control input-sm">
+													<input type="text" name="telefono" id="form-field-select-1" class="form-control input-sm" value="{{old('telefono')}}">
+													<div id=" " class="help-block orange2">{{$errors->first('telefono')}}</div>
 												</div>
 											</div>
 											<div class="form-group has-info">
 												<div class="col-lg-6">
 													<label for="inputInfo">Dirección</label>
-													<input type="text" name="direccion" id="inputInfo" class="form-control input-sm">
+													<input type="text" name="direccion" id="inputInfo" class="form-control input-sm" value="{{old('direccion')}}">
+													<div id=" " class="help-block orange2">{{$errors->first('direccion')}}</div>
 												</div>
 											</div>
 										</div>
@@ -85,21 +86,25 @@
 											<div class="form-group has-info">
 												<div class="col-lg-4">
 													<label for="form-field-select-1">Marca</label>
-													<input type="text" name="marca" id="form-field-select-1" class="form-control input-sm">
+													<input type="text" name="marca" id="form-field-select-1" class="form-control input-sm" value="{{old('marca')}}">
+													<div id=" " class="help-block orange2">{{$errors->first('marca')}}</div>
 												</div>
 												<div class="col-lg-4">
 													<label for="form-field-select-2">Modelo</label>
-													<input type="text" name="modelo" id="form-field-select-1" class="form-control input-sm">
+													<input type="text" name="modelo" id="form-field-select-1" class="form-control input-sm" value="{{old('modelo')}}">
+													<div id=" " class="help-block orange2">{{$errors->first('modelo')}}</div>
 												</div>
 												<div class="col-lg-4">
 													<label for="form-field-select-3">Serie</label>
-													<input type="text" name="serie" id="form-field-select-1" class="form-control input-sm">
+													<input type="text" name="serie" id="form-field-select-1" class="form-control input-sm" value="{{old('serie')}}">
+													<div id=" " class="help-block orange2">{{$errors->first('serie')}}</div>
 												</div>
 											</div>
 											<div class="form-group has-info">
 												<div class="col-lg-8">
 													<label for="form-field-select-1">Descripción para el servicio</label>
-													<textarea id="form-field-select-1" class="form-control input-sm" rows="3" name="descripcion_servicio"></textarea>
+													<textarea id="form-field-select-1" class="form-control input-sm" rows="3" name="descripcion_servicio">{{old("descripcion_servicio")}}</textarea>
+													<div id="" class="help-block orange2">{{$errors->first('descripcion_servicio')}}</div>
 												</div>
 												<div class="col-lg-4">
 													<label>Tipo</label>
@@ -109,6 +114,7 @@
 														<option value="laptop">Laptop</option>
 														<option value="tablet">Tablet</option>
 													</select>
+													<div id=" " class="help-block orange2">{{$errors->first('tipo-equipo')}}</div>
 												</div>
 											</div>
 											<div class="form-group has-info">
@@ -126,7 +132,7 @@
 															<span class="lbl"> Operativo</span>
 														</label>
 													</div>
-
+													<div id=" " class="help-block orange2">{{$errors->first('condicion')}}</div>
 												</div>
 											</div>
 										</div>
@@ -156,7 +162,7 @@
 														</div>
 													</div>
 													<div class="col-lg-6">
-														<input type="text" name="serie_componente[]" id="form-field-select-1" class="form-control input-sm" placeholder="N° Serie">
+														<input type="text" name="serie_componente[{{$componente->idcomponente}}]" id="form-field-select-1" class="form-control input-sm" placeholder="N° Serie">
 													</div>
 												</div>
 												
@@ -186,6 +192,7 @@
 														<option value="{{$tecnico->id}}">{{$tecnico->name.' '.$tecnico->apellido}}</option>
 													@endforeach
 												</select>
+												<div class="help-block orange2">{{$errors->first('tecnico')}}</div>
 											</div>
 
 											<div class="col-lg-6">
@@ -196,6 +203,7 @@
 													<option value="media">Media</option>
 													<option value="alta">Alta</option>
 												</select>
+												<div  class="help-block orange2">{{$errors->first('prioridad')}}</div>
 											</div>
 										</div>	
 
