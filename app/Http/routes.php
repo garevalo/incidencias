@@ -17,10 +17,15 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('usuario/image', 'UsuarioController@editimage');
 	Route::get('usuario/modal/{modal}/{id?}', 'UsuarioController@modal');
 	Route::get('usuario/getdata/{id?}', 'UsuarioController@dataUser');
-	
+
+    Route::get('cliente/data',['as'=>'clientedata','uses'=>'ClienteController@anyDataCliente']);
+    Route::get('cliente/modal/{modal}/{id?}', 'ClienteController@modal');
+    Route::get('cliente/getdata/{id?}', 'ClienteController@dataCliente');
+    Route::resource('cliente', 'ClienteController');
 	//Route::group(['middleware' => 'role'], function() {
 		Route::resource('usuario', 'UsuarioController');
 		Route::resource('incidencia', 'IncidenciaController');
+
 	//});
 
 });

@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
       if ($request->is('usuario') || $request->is('usuario/*')) {
         $this->menu = 1 ;
       }
+      elseif ($request->is('cliente') || $request->is('cliente/*')){
+          $this->menu = 3 ;
+      }
       elseif($request->is('incidencia') || $request->is('incidencia/*')){
         $this->menu = 2 ;
         if($request->is('incidencia/create')){

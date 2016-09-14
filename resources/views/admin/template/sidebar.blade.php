@@ -13,6 +13,14 @@
 
 			<b class="arrow"></b>
 		</li>
+		<li class="<?= ($menu==3)?'active open':''?>">
+			<a href="{{url('cliente')}}">
+				<i class="menu-icon fa fa-users"></i>
+				<span class="menu-text"> Clientes </span>
+			</a>
+
+			<b class="arrow"></b>
+		</li>
 		<li class="<?= ($menu==2)?'active open':''?>">
 			<a href="{{url('incidencia')}}" class="dropdown-toggle">
 				<i class="menu-icon glyphicon glyphicon-time"></i>
