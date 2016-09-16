@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f704ab88-e10b-413a-b2b7-16522128e815" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/IncidenciaController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/IncidenciaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/incidencias/incidencias.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/incidencias/incidencias.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClienteController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClienteController.php" />
     </list>
     <ignored path="incidencias.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,14 +31,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IncidenciaController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IncidenciaController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenciaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10">
-              <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
+            <state relative-caret-position="61">
+              <caret line="171" column="30" selection-start-line="171" selection-start-column="30" selection-end-line="171" selection-end-column="30" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
                 <marker date="1473998943985" expanded="true" signature="6411:6749" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClienteController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClienteController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="106" column="49" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+              <folding>
+                <element signature="e#40#52#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,12 +156,12 @@
         <option value="$PROJECT_DIR$/app/Incidencia.php" />
         <option value="$PROJECT_DIR$/app/Componente.php" />
         <option value="$PROJECT_DIR$/app/IncidenciaComponente.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ClienteController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/clientes/clientes.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/public/app/controllers/incidencias.js" />
         <option value="$PROJECT_DIR$/resources/views/admin/incidencias/incidencias.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenciaController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ClienteController.php" />
       </list>
     </option>
   </component>
@@ -536,12 +546,12 @@
       <workItem from="1473612920408" duration="34107000" />
       <workItem from="1473826360412" duration="12142000" />
       <workItem from="1473909968352" duration="3361000" />
-      <workItem from="1473991191016" duration="5661000" />
+      <workItem from="1473991191016" duration="5822000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55512000" />
+    <option name="totallyTimeSpent" value="55673000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="258" y="0" width="1630" height="1047" extended-state="0" />
@@ -926,14 +936,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClienteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1274">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -970,11 +972,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenciaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
+        <state relative-caret-position="61">
+          <caret line="171" column="30" selection-start-line="171" selection-start-column="30" selection-end-line="171" selection-end-column="30" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
             <marker date="1473998943985" expanded="true" signature="6411:6749" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClienteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="106" column="49" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+          <folding>
+            <element signature="e#40#52#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

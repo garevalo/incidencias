@@ -109,8 +109,8 @@ class ClienteController extends Controller
         $validator = Validator::make($request->all(), [
             'nombre'    => 'required|min:4|max:40|string',
             'dni_ruc'  => 'required|digits_between:8,11|numeric',
-            'correo'    => 'required|email|unique:clientes',
-            'telefono'   => 'required|digits_between:7,9|numeric|unique:clientes,telefono',
+            'correo'    => 'required|email',
+            'telefono'   => 'required|digits_between:7,9|numeric',
             'direccion'  => 'required|min:4|max:60|string'
         ]);
 
