@@ -36,12 +36,14 @@
 							<input type="checkbox" class="ace" /><span class="lbl"></span>
 						</label>
 					</th>
+					<th>ID</th>
 					<th>Cliente</th>
 					<th>Marca</th>
 					<th>Modelo</th>
 					<th>Serie</th>
 					<th>Técnico</th>
 					<th>Estado</th>
+					<th>Prioridad</th>
 					<th style="text-align: center;"><a class="btn btn-success btn-sm"href="{{url('incidencia/create')}}">Nueva Incidencia</a></th>
 				</tr>
 			</thead>
@@ -71,12 +73,14 @@
 			factory.idioma='{{ asset('js/Spanish.json') }}';
 			factory.columns=[
 				{ data: 'check',  name: 'check',orderable:false,searchable:false },
+				{ data: 'idincidencia',   name: 'idincidencia' },
 				{ data: 'nombre',   name: 'nombre' },
 				{ data: 'marca',   name: 'marca' },
 				{ data: 'modelo',  name: 'modelo' },
 				{ data: 'serie',  name: 'serie' },
 				{ data: 'tecnico',  name: 'tecnico' },
 				{ data: 'estado',  name: 'estado' },
+				{ data: 'prioridad',  name: 'prioridad' },
 				{ data: 'edit',   name: 'edit',orderable:false,searchable:false }
 			];
 			return factory;

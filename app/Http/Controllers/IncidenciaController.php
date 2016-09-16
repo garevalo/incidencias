@@ -176,17 +176,31 @@ class IncidenciaController extends Controller
             ->addColumn('check',function($incidencia){
                 return '<label class="pos-rel"><input type="checkbox" class="ace"><span class="lbl" id="'.$incidencia->idincidencia.'"></span></label>';
             })
+            ->addColumn('idincidencia',function($incidencia){
+                return '<a href="'.url('incidencia/edit'.$incidencia->idincidencia).'">'.$incidencia->idincidencia.'</a>';
+            })
             ->addColumn('tecnico',function($incidencia){
                 return $incidencia->name.' '.$incidencia->apellido;
             })
             ->addColumn('estado',function($incidencia){
                 if($incidencia->estado==1){
-                    $estado = '<span class="label label-info">Solicitado</span>';
+                    $estado = '<span class="label label-info">Abierta</span>';
                 }elseif($incidencia->estado==2){
                     $estado = '<span class="label label-warning">En Curso</span>';
                 }
-                elseif($incidencia->estado==2){
-                    $estado = '<span class="label label-success">Completado</span>';
+                elseif($incidencia->estado==3){
+                    $estado = '<span class="label label-success">Cerrada</span>';
+                }
+                return $estado;
+            })
+            ->addColumn('prioridad',function($incidencia){
+                if($incidencia->prioridad=='baja'){
+                    $estado = '<span class="label label-info">Baja</span>';
+                }elseif($incidencia->prioridad=='media'){
+                    $estado = '<span class="label label-warning">Media</span>';
+                }
+                elseif($incidencia->prioridad=='alta'){
+                    $estado = '<span class="label label-danger">Alta</span>';
                 }
                 return $estado;
             })
