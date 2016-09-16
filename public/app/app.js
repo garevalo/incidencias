@@ -1,4 +1,4 @@
-var app = angular.module('apprayuela', [],function($interpolateProvider){
+var app = angular.module('appincidencia', [],function($interpolateProvider){
 	$interpolateProvider.startSymbol('<%');
 	$interpolateProvider.endSymbol('%>');
 }).constant('API_URL', 'http://incidencias.app/');

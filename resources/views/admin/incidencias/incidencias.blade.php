@@ -1,6 +1,6 @@
 @extends("admin.template.main")
 
-@section("title","Lista de Usuarios")
+@section("title","Lista de Incidencias")
 
 @section("header")
 	@parent
@@ -9,7 +9,7 @@
 
 
 @section("content")
-<div ng-controller="UsuariosController">
+<div ng-controller="IncidenciasController">
 	<div class="clearfix">
 		<div class="pull-right tableTools-container"></div>
 	</div>
@@ -28,7 +28,7 @@
 	</style>
 
 	<div>
-		<table id="users-table" class="table table-striped table-bordered table-condensed table-hover" ng-init="loadTable()">
+		<table id="data-table" class="table table-striped table-bordered table-condensed table-hover" ng-init="loadTable()">
 			<thead>
 				<tr>
 					<th class="center">
@@ -36,13 +36,13 @@
 							<input type="checkbox" class="ace" /><span class="lbl"></span>
 						</label>
 					</th>
-					<th>Nombres</th>
-					<th>Apellidos</th>
-					<th>Usuario</th>
-					<th>Correo</th>
-					<th>Rol</th>
-					<?php /*<th>Imagen</th>*/?>
-					<th style="text-align: center;"><button class="btn btn-success btn-sm" ng-click="modalUser('new')">Nuevo Usuario</button></th>
+					<th>Cliente</th>
+					<th>Marca</th>
+					<th>Modelo</th>
+					<th>Serie</th>
+					<th>Técnico</th>
+					<th>Estado</th>
+					<th style="text-align: center;"><a class="btn btn-success btn-sm"href="{{url('incidencia/create')}}">Nueva Incidencia</a></th>
 				</tr>
 			</thead>
 		</table>
@@ -59,15 +59,35 @@
 </div>
 
 
-
 @endsection
 
 @section("fscript")
 	@parent
+
+	<script>
+		app.factory('IncidenciasFactory',function(){
+			var factory={};
+			factory.ajax='{{ route('incidenciadata') }}';
+			factory.idioma='{{ asset('js/Spanish.json') }}';
+			factory.columns=[
+				{ data: 'check',  name: 'check',orderable:false,searchable:false },
+				{ data: 'nombre',   name: 'nombre' },
+				{ data: 'marca',   name: 'marca' },
+				{ data: 'modelo',  name: 'modelo' },
+				{ data: 'serie',  name: 'serie' },
+				{ data: 'tecnico',  name: 'tecnico' },
+				{ data: 'estado',  name: 'estado' },
+				{ data: 'edit',   name: 'edit',orderable:false,searchable:false }
+			];
+			return factory;
+
+		});
+	</script>
+
 	<script src="{{ asset("js/jquery-ui.custom.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.dataTables.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.dataTables.bootstrap.min.js") }}"></script>
 
-	<script src="{{ asset("app/controllers/usuarios.js") }}"></script>
+	<script src="{{ asset("app/controllers/incidencias.js") }}"></script>
 
 @endsection

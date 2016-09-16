@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('cliente', 'ClienteController');
 	//Route::group(['middleware' => 'role'], function() {
 		Route::resource('usuario', 'UsuarioController');
+
+        Route::get('incidencia/data',['as'=>'incidenciadata','uses'=>'IncidenciaController@anyData']);
 		Route::resource('incidencia', 'IncidenciaController');
 
 	//});

@@ -13,6 +13,7 @@ use App\Incidencia;
 use App\IncidenciaComponente;
 use DB;
 use Validator;
+use Yajra\Datatables\Datatables;
 
 class IncidenciaController extends Controller
 {
@@ -23,7 +24,6 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-
        return view("admin.incidencias.incidencias");
     }
 
@@ -161,6 +161,38 @@ class IncidenciaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /*
+         * $users = DB::table('users')
+            ->join('contacts', 'users.id', '=', 'contacts.user_id')
+            ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->select('users.*', 'contacts.phone', 'orders.price')
+            ->get();*/
+    }
+
+    public function anyData(){
+        //$datos = User::select([])->get();
+        return Datatables::of(Incidencia::join('clientes','clientes.idcliente','=','incidencia.idincidencia')
+                                        ->join('users','users.id','=','incidencia.idtecnico'))
+            ->addColumn('check',function($incidencia){
+                return '<label class="pos-rel"><input type="checkbox" class="ace"><span class="lbl" id="'.$incidencia->idincidencia.'"></span></label>';
+            })
+            ->addColumn('tecnico',function($incidencia){
+                return $incidencia->name.' '.$incidencia->apellido;
+            })
+            ->addColumn('estado',function($incidencia){
+                if($incidencia->estado==1){
+                    $estado = '<span class="label label-info">Solicitado</span>';
+                }elseif($incidencia->estado==2){
+                    $estado = '<span class="label label-warning">En Curso</span>';
+                }
+                elseif($incidencia->estado==2){
+                    $estado = '<span class="label label-success">Completado</span>';
+                }
+                return $estado;
+            })
+            ->addColumn('edit',function($incidencia){
+                return '<a ng-click="modalIncidencia(2,'.$incidencia->idincidencia.')" class="green"><i class="ace-icon fa fa-pencil bigger-130"></i></a>';
+            })
+            ->make(true);
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="apprayuela">
+<html lang="en" ng-app="appincidencia">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
