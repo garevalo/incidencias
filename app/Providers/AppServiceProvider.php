@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
             $this->submenu = '2.2' ;
         }
       }
+
       view()->share(['menu'=>$this->menu,'submenu'=>$this->submenu]);
     }
 

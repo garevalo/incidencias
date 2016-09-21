@@ -223,7 +223,7 @@ class UsuarioController extends Controller
                 $rol = "Administrador";
             }
             elseif ($user->idrol==2) {
-                $rol = "Usuario";
+                $rol = "Técnico";
             }
             return $rol;
         })
@@ -241,5 +241,10 @@ class UsuarioController extends Controller
             return response()->json(User::all());
         else
             return response()->json(User::find($id));
+    }
+
+    public function getUser($field,$value){
+
+        return User::where($field,'like','%{$value}')->get();
     }
 }

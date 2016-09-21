@@ -18,17 +18,25 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/modal/{modal}/{id?}', 'UsuarioController@modal');
 	Route::get('usuario/getdata/{id?}', 'UsuarioController@dataUser');
 
-    Route::get('cliente/data',['as'=>'clientedata','uses'=>'ClienteController@anyDataCliente']);
-    Route::get('cliente/modal/{modal}/{id?}', 'ClienteController@modal');
-    Route::get('cliente/getdata/{id?}', 'ClienteController@dataCliente');
-    Route::resource('cliente', 'ClienteController');
-	//Route::group(['middleware' => 'role'], function() {
+
+
+	Route::group(['middleware' => 'role'], function() {
+
+        Route::get('cliente/data',['as'=>'clientedata','uses'=>'ClienteController@anyDataCliente']);
+        Route::get('cliente/modal/{modal}/{id?}', 'ClienteController@modal');
+        Route::get('cliente/getdata/{id?}', 'ClienteController@dataCliente');
+        Route::get('cliente/getcliente/{field}/{value}', 'ClienteController@getCliente');
+        Route::resource('cliente', 'ClienteController');
+
 		Route::resource('usuario', 'UsuarioController');
 
-        Route::get('incidencia/data',['as'=>'incidenciadata','uses'=>'IncidenciaController@anyData']);
-		Route::resource('incidencia', 'IncidenciaController');
-
-	//});
+	});
+    Route::get('incidencia/getdata/{id?}', 'IncidenciaController@dataIncidencia');
+    Route::get('incidencia/modal/{modal}/{id?}', 'IncidenciaController@modal');
+    Route::get('incidencia/data',['as'=>'incidenciadata','uses'=>'IncidenciaController@anyData']);
+    Route::get('incidencia/asignada',['as'=>'incidenciaasignada','uses'=>'IncidenciaController@incidenciasAsignadas']);
+    Route::resource('incidencia', 'IncidenciaController');
+    Route::get('estado/getdata','EstadoController@getEstados');
 
 });
 

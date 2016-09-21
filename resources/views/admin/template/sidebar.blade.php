@@ -5,6 +5,7 @@
 
 	<ul class="nav nav-list">
 
+		@if(Auth::user()->idrol==1)
 		<li class="<?= ($menu==1)?'active open':''?>">
 			<a href="{{url('usuario')}}">
 				<i class="menu-icon fa fa-users"></i>
@@ -21,6 +22,7 @@
 
 			<b class="arrow"></b>
 		</li>
+		@endif
 		<li class="<?= ($menu==2)?'active open':''?>">
 			<a href="{{url('incidencia')}}" class="dropdown-toggle">
 				<i class="menu-icon glyphicon glyphicon-time"></i>
@@ -28,6 +30,7 @@
 			</a>
 			<b class="arrow"></b>
 			<ul class="submenu nav-show">
+				@if(Auth::user()->idrol==1)
 				<li class="<?= ($submenu==2.1)?'active':''?>">
 					<a href="{{url('incidencia/create')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -35,6 +38,7 @@
 					</a>
 					<b class="arrow"></b>
 				</li>
+				@endif
 				<li class="<?= ($submenu==2.2)?'active':''?>">
 					<a href="{{url('incidencia')}}">
 						<i class="menu-icon fa fa-caret-right"></i>

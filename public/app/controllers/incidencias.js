@@ -108,16 +108,38 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
 
 
     $scope.modalIncidencia = function (modal, idincidencia) {
-        $scope.cliente = "";
+        $scope.incidencia = "";
+        $scope.estados = "";
         var time = new Date().getTime();
 
         if (modal == "new") {
-            $scope.urlmodal = API_URL + "cliente/modal/new?" + time;
+            $scope.urlmodal = API_URL + "incidencia/modal/new?" + time;
         } else {
-            $http.get(API_URL + 'cliente/getdata/' + idcliente).success(function (data, status) {
-                $scope.cliente = data;
+            $http.get(API_URL + 'incidencia/getdata/' + idincidencia).success(function (data, status) {
+                $scope.incidencia = data;
+                $scope.selectincidencia = {idincidencia:2};
             });
-            $scope.urlmodal = API_URL + "cliente/modal/edit/" + idcliente + "?" + time;
+            console.log($scope.incidencia);
+            $http.get(API_URL + 'estado/getdata').success(function (data, status) {
+                $scope.estados = data;
+            });
+            $scope.data = {
+                availableOptions: [
+                    {id: '1', name: 'Option A'},
+                    {id: '2', name: 'Option B'},
+                    {id: '3', name: 'Option C'}
+                ],
+                selectedOption: {id: '2'} //This sets the default value of the select in the ui
+            };
+
+            $scope.dataOption = [
+                    {id: '1', name: 'Option A'},
+                    {id: '2', name: 'Option B'},
+                    {id: '3', name: 'Option C'}
+                ];
+
+            $scope.selected={id:3};
+            $scope.urlmodal = API_URL + "incidencia/modal/edit/" + idincidencia + "?" + time;
         }
 
         $('#modalEdit').modal('show');
@@ -126,5 +148,26 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
     $scope.loadTable = function () {
         $('#data-table').dataTable(options);
     }
+
+    /*
+    * <div ng-controller="ExampleController">
+     <form name="myForm">
+     <label for="mySelect">Make a choice:</label>
+     <select name="mySelect" id="mySelect"
+     ng-options="option.name for option in data.availableOptions track by option.id"
+     ng-model="data.selectedOption"></select>
+     </form>
+     <hr>
+     <tt>option = {{data.selectedOption}}</tt><br/>
+     </div>
+     $scope.data = {
+     availableOptions: [
+     {id: '1', name: 'Option A'},
+     {id: '2', name: 'Option B'},
+     {id: '3', name: 'Option C'}
+     ],
+     selectedOption: {id: '3', name: 'Option C'} //This sets the default value of the select in the ui
+     };
+    * */
 
 });

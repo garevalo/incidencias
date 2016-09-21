@@ -4,12 +4,12 @@
 
 @section("header")
 	@parent
-	
+
 @endsection
 
 
 @section("content")
-<div ng-controller="UsuariosController">
+<div ng-controller="IncidenciasController">
 	<div class="clearfix">
 		<div class="pull-right tableTools-container"></div>
 	</div>
@@ -48,24 +48,25 @@
 											<div class="form-group has-info">
 												<div class="col-lg-3 ">
 													<label for="inputInfo">Cliente</label>
-													<input type="text" name="cliente" id="inputInfo" class="form-control input-sm" value="{{ old('cliente') }}">
+													<input type="text" name="cliente" id="cliente"  class="form-control input-sm" value="{{ old('cliente') }}">
+													<input type="hidden" id="idcliente" name="idcliente">
 													<div id=" " class="help-block orange2">{{$errors->first('cliente')}}</div>
 												</div>
 												<div class="col-lg-3">
 													<label for="form-field-select-3">Dni o Ruc</label>
-													<input type="text" name="ruc_dni" id="form-field-select-1" class="form-control input-sm" value="{{old('ruc_dni')}}">
+													<input type="text" name="ruc_dni" id="ruc_dni" class="form-control input-sm" value="{{old('ruc_dni')}}">
 													<div id=" " class="help-block orange2">{{$errors->first('ruc_dni')}}</div>
 												</div>
 												<div class="col-lg-3">
 													<label for="form-field-select-2">Teléfono</label>
-													<input type="text" name="telefono" id="form-field-select-1" class="form-control input-sm" value="{{old('telefono')}}">
+													<input type="text" name="telefono" id="telefono" class="form-control input-sm" value="{{old('telefono')}}">
 													<div id=" " class="help-block orange2">{{$errors->first('telefono')}}</div>
 												</div>
 											</div>
 											<div class="form-group has-info">
 												<div class="col-lg-6">
 													<label for="inputInfo">Dirección</label>
-													<input type="text" name="direccion" id="inputInfo" class="form-control input-sm" value="{{old('direccion')}}">
+													<input type="text" name="direccion" id="direccion" class="form-control input-sm" value="{{old('direccion')}}">
 													<div id=" " class="help-block orange2">{{$errors->first('direccion')}}</div>
 												</div>
 											</div>
@@ -122,13 +123,13 @@
 													<label for="form-field-select-1">Condición al recepcionar</label>
 													<div class="radio-inline">
 														<label>
-															<input name="condicion" type="radio" class="ace input-lg" value="inoperativo">
+															<input name="condicion" type="radio" class="ace" value="inoperativo">
 															<span class="lbl"> Inoperativo</span>
 														</label>
 													</div>
 													<div class="radio-inline">
 														<label>
-															<input name="condicion" type="radio" class="ace input-lg" value="operativo">
+															<input name="condicion" type="radio" class="ace" value="operativo">
 															<span class="lbl"> Operativo</span>
 														</label>
 													</div>
@@ -156,7 +157,7 @@
 													<div class="col-lg-6">
 														<div class="checkbox">
 															<label class="block">
-																<input type="checkbox" class="ace ace-checkbox-2" name="componente[]" value="{{$componente->idcomponente}}">
+																<input type="checkbox" class="ace" name="componente[]" value="{{$componente->idcomponente}}">
 																<span class="lbl"> <?= $componente->componente?></span>
 															</label>
 														</div>
@@ -200,9 +201,9 @@
 												<label for="form-field-select-1">Prioridad</label>
 												<select id="inputInfo" class="form-control input-sm" name="prioridad">
 													<option value="">Selecciones prioridad</option>
-													<option value="baja">Baja</option>
-													<option value="media">Media</option>
-													<option value="alta">Alta</option>
+													<option value="1">Baja</option>
+													<option value="2">Media</option>
+													<option value="3">Alta</option>
 												</select>
 												<div  class="help-block orange2">{{$errors->first('prioridad')}}</div>
 											</div>
@@ -242,8 +243,49 @@
 
 @section("fscript")
 	@parent
+	<script>
+
+		$( "#cliente" ).autocomplete({
+			source: function( request, response ) {
+				$.ajax( {
+					url: "{{url('cliente/getcliente/nombre')}}"+'/'+request.term,
+					//dataType: "jsonp",
+					data: {
+						term: request.term
+					},
+					success: function( data ) {
+
+						response( data );
+						console.log(data);
+					}
+				} );
+			},
+			minLength: 2,
+			select: function( event, ui ) {
+				//console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+
+				$("#idcliente").val(ui.item.id);
+				$("#cliente").val(ui.item.nombre);
+				$("#ruc_dni").val(ui.item.dni_ruc);
+				$("#telefono").val(ui.item.telefono);
+				$("#direccion").val(ui.item.direccion);
+
+				$("#cliente").attr('disabled','disabled');
+				$("#ruc_dni").attr('disabled','disabled');
+				$("#telefono").attr('disabled','disabled');
+				$("#direccion").attr('disabled','disabled');
+			}
+		} );
+
+		app.factory('IncidenciasFactory',function(){
+			var factory={};
+			return factory;
+
+		});
+	</script>
 	<script src="{{ asset("js/jquery-ui.custom.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.dataTables.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.dataTables.bootstrap.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.gritter.min.js") }}"></script>
+	<script src="{{ asset("app/controllers/incidencias.js") }}"></script>
 @endsection

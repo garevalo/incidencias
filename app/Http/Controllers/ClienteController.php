@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
 use Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -156,5 +157,12 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getCliente($field='nombre',$value){
+       //$value =  Input::get('term');
+       //return Cliente::select('idcliente as id', 'nombre as value')->where($field,'like','%'.$value.'%')->get();
+       return Cliente::select('idcliente as id', 'nombre as value','dni_ruc','telefono','direccion')->where($field,'like','%'.$value.'%')->get();
+       // return $field.' '.$value;
     }
 }

@@ -16,8 +16,8 @@ class Role
     public function handle($request, Closure $next)
     {
         
-        if($request->user()->idrol==1){
-            return redirect('usuario');
+        if($request->user()->idrol==2){
+            return redirect('incidencia');
         }
         return $next($request);
     }

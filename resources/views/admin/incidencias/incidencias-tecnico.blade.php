@@ -14,7 +14,7 @@
 		<div class="pull-right tableTools-container"></div>
 	</div>
 	<div class="table-header">
-		Incidencias
+		Incidencias Asignadas
 	</div>
 
 	<!-- div.table-responsive -->
@@ -41,22 +41,22 @@
 					<th>Marca</th>
 					<th>Modelo</th>
 					<th>Serie</th>
-					<th>Técnico</th>
 					<th>Estado</th>
 					<th>Prioridad</th>
-					<th style="text-align: center;"><a class="btn btn-success btn-sm"href="{{url('incidencia/create')}}">Nueva Incidencia</a></th>
+					<th></th>
 				</tr>
 			</thead>
 		</table>
 	</div>
 
-	<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-		<div class="modal-dialog">
+	<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<ng-include src="urlmodal"></ng-include>
 			</div>
 		</div>
 	</div>
+
 
 </div>
 
@@ -69,7 +69,7 @@
 	<script>
 		app.factory('IncidenciasFactory',function(){
 			var factory={};
-			factory.ajax='{{ route('incidenciadata') }}';
+			factory.ajax='{{ route('incidenciaasignada') }}';
 			factory.idioma='{{ asset('js/Spanish.json') }}';
 			factory.columns=[
 				{ data: 'check',  name: 'check',orderable:false,searchable:false },
@@ -78,7 +78,6 @@
 				{ data: 'marca',   name: 'marca' },
 				{ data: 'modelo',  name: 'modelo' },
 				{ data: 'serie',  name: 'serie' },
-				{ data: 'tecnico',  name: 'name' },
 				{ data: 'estado',  name: 'estado' },
 				{ data: 'prioridad',  name: 'prioridad' },
 				{ data: 'edit',   name: 'edit',orderable:false,searchable:false }
