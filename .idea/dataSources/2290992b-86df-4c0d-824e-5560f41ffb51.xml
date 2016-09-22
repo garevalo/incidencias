@@ -22,276 +22,306 @@
     <table id="17" parent="1" name="password_resets"/>
     <table id="18" parent="1" name="roles"/>
     <table id="19" parent="1" name="users"/>
-    <column id="20" parent="12" name="idcliente">
+    <table id="20" parent="1" name="estados"/>
+    <column id="21" parent="12" name="idcliente">
       <mandatory>1</mandatory>
       <data-type>int(10) unsigned|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="21" parent="12" name="nombre">
+    <column id="22" parent="12" name="nombre">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="22" parent="12" name="dni_ruc">
+    <column id="23" parent="12" name="dni_ruc">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="23" parent="12" name="telefono">
+    <column id="24" parent="12" name="telefono">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="24" parent="12" name="direccion">
+    <column id="25" parent="12" name="direccion">
       <mandatory>1</mandatory>
       <data-type>varchar(100)|0</data-type>
     </column>
-    <column id="25" parent="12" name="correo">
+    <column id="26" parent="12" name="correo">
       <mandatory>1</mandatory>
       <data-type>varchar(100)|0</data-type>
     </column>
-    <column id="26" parent="12" name="created_at">
+    <column id="27" parent="12" name="created_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <column id="27" parent="12" name="updated_at">
+    <column id="28" parent="12" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <key id="28" parent="12" name="PRIMARY">
+    <key id="29" parent="12" name="PRIMARY">
       <columns>idcliente</columns>
       <primary>1</primary>
     </key>
-    <column id="29" parent="13" name="idcomponente">
+    <column id="30" parent="13" name="idcomponente">
       <mandatory>1</mandatory>
       <data-type>int(10) unsigned|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="30" parent="13" name="componente">
+    <column id="31" parent="13" name="componente">
       <mandatory>1</mandatory>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="31" parent="13" name="created_at">
+    <column id="32" parent="13" name="created_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <column id="32" parent="13" name="updated_at">
+    <column id="33" parent="13" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <key id="33" parent="13" name="PRIMARY">
+    <key id="34" parent="13" name="PRIMARY">
       <columns>idcomponente</columns>
       <primary>1</primary>
     </key>
-    <column id="34" parent="14" name="idincidencia">
+    <column id="35" parent="14" name="idincidencia">
       <mandatory>1</mandatory>
       <data-type>int(10) unsigned|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="35" parent="14" name="idcliente">
+    <column id="36" parent="14" name="idcliente">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="36" parent="14" name="marca">
+    <column id="37" parent="14" name="marca">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="37" parent="14" name="modelo">
+    <column id="38" parent="14" name="modelo">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="38" parent="14" name="serie">
+    <column id="39" parent="14" name="serie">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="39" parent="14" name="descripcion">
+    <column id="40" parent="14" name="descripcion">
       <mandatory>1</mandatory>
       <data-type>varchar(200)|0</data-type>
     </column>
-    <column id="40" parent="14" name="tipo">
+    <column id="41" parent="14" name="tipo">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="41" parent="14" name="condicion">
+    <column id="42" parent="14" name="condicion">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="42" parent="14" name="prioridad">
+    <column id="43" parent="14" name="prioridad">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="43" parent="14" name="estado">
+    <column id="44" parent="14" name="estado">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="44" parent="14" name="idtecnico">
+    <column id="45" parent="14" name="idtecnico">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="45" parent="14" name="diagnostico">
+    <column id="46" parent="14" name="diagnostico">
       <mandatory>1</mandatory>
       <data-type>varchar(200)|0</data-type>
     </column>
-    <column id="46" parent="14" name="descripcion_tecnico">
+    <column id="47" parent="14" name="descripcion_tecnico">
       <mandatory>1</mandatory>
       <data-type>varchar(200)|0</data-type>
     </column>
-    <column id="47" parent="14" name="created_at">
+    <column id="48" parent="14" name="created_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
-      <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      <default-expression>CURRENT_TIMESTAMP</default-expression>
     </column>
-    <column id="48" parent="14" name="updated_at">
+    <column id="49" parent="14" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
-      <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      <default-expression>CURRENT_TIMESTAMP</default-expression>
     </column>
-    <key id="49" parent="14" name="PRIMARY">
+    <column id="50" parent="14" name="fecha_curso">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="51" parent="14" name="fecha_completa">
+      <data-type>datetime|0</data-type>
+    </column>
+    <key id="52" parent="14" name="PRIMARY">
       <columns>idincidencia</columns>
       <primary>1</primary>
     </key>
-    <column id="50" parent="15" name="id_inc_comp">
+    <column id="53" parent="15" name="id_inc_comp">
       <mandatory>1</mandatory>
       <data-type>int(10) unsigned|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="51" parent="15" name="idcomponente">
+    <column id="54" parent="15" name="idcomponente">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="52" parent="15" name="idincidencia">
+    <column id="55" parent="15" name="idincidencia">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="53" parent="15" name="serie">
+    <column id="56" parent="15" name="serie">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="54" parent="15" name="created_at">
+    <column id="57" parent="15" name="created_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <column id="55" parent="15" name="updated_at">
+    <column id="58" parent="15" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <key id="56" parent="15" name="PRIMARY">
+    <key id="59" parent="15" name="PRIMARY">
       <columns>id_inc_comp</columns>
       <primary>1</primary>
     </key>
-    <column id="57" parent="16" name="migration">
+    <column id="60" parent="16" name="migration">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="58" parent="16" name="batch">
+    <column id="61" parent="16" name="batch">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="59" parent="17" name="email">
+    <column id="62" parent="17" name="email">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="60" parent="17" name="token">
+    <column id="63" parent="17" name="token">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="61" parent="17" name="created_at">
+    <column id="64" parent="17" name="created_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <index id="62" parent="17" name="password_resets_email_index">
+    <index id="65" parent="17" name="password_resets_email_index">
       <columns>email</columns>
       <desc-columns></desc-columns>
     </index>
-    <index id="63" parent="17" name="password_resets_token_index">
+    <index id="66" parent="17" name="password_resets_token_index">
       <columns>token</columns>
       <desc-columns></desc-columns>
     </index>
-    <column id="64" parent="18" name="id">
+    <column id="67" parent="18" name="id">
       <mandatory>1</mandatory>
       <data-type>int(10) unsigned|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="65" parent="18" name="nombre_rol">
+    <column id="68" parent="18" name="nombre_rol">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="66" parent="18" name="created_at">
+    <column id="69" parent="18" name="created_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <column id="67" parent="18" name="updated_at">
+    <column id="70" parent="18" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <key id="68" parent="18" name="PRIMARY">
+    <key id="71" parent="18" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="69" parent="19" name="id">
+    <column id="72" parent="19" name="id">
       <mandatory>1</mandatory>
       <data-type>int(10) unsigned|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="70" parent="19" name="name">
+    <column id="73" parent="19" name="name">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="71" parent="19" name="apellido">
+    <column id="74" parent="19" name="apellido">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="72" parent="19" name="usuario">
+    <column id="75" parent="19" name="usuario">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="73" parent="19" name="email">
+    <column id="76" parent="19" name="email">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="74" parent="19" name="image">
+    <column id="77" parent="19" name="image">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="75" parent="19" name="password">
+    <column id="78" parent="19" name="password">
       <mandatory>1</mandatory>
       <data-type>varchar(60)|0</data-type>
     </column>
-    <column id="76" parent="19" name="idrol">
+    <column id="79" parent="19" name="idrol">
       <mandatory>1</mandatory>
       <data-type>int(10) unsigned|0</data-type>
     </column>
-    <column id="77" parent="19" name="remember_token">
+    <column id="80" parent="19" name="remember_token">
       <data-type>varchar(100)|0</data-type>
     </column>
-    <column id="78" parent="19" name="created_at">
+    <column id="81" parent="19" name="created_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <column id="79" parent="19" name="updated_at">
+    <column id="82" parent="19" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
     </column>
-    <index id="80" parent="19" name="users_email_unique">
+    <index id="83" parent="19" name="users_email_unique">
       <columns>email</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="81" parent="19" name="PRIMARY">
+    <key id="84" parent="19" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <key id="82" parent="19" name="users_email_unique">
+    <key id="85" parent="19" name="users_email_unique">
       <columns>email</columns>
       <underlying-index>users_email_unique</underlying-index>
+    </key>
+    <column id="86" parent="20" name="idestado">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="87" parent="20" name="nombre_estado">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="88" parent="20" name="created_at">
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+      <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+    </column>
+    <column id="89" parent="20" name="updated_at">
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+      <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+    </column>
+    <key id="90" parent="20" name="PRIMARY">
+      <columns>idestado</columns>
+      <primary>1</primary>
     </key>
   </database-model>
 </dataSource>

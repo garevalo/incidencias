@@ -171,7 +171,8 @@ class IncidenciaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        echo $id;
+        print_r($request);
     }
 
     /**
