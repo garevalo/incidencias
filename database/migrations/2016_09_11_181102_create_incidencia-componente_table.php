@@ -18,8 +18,6 @@ class CreateIncidenciaComponenteTable extends Migration
             $table->integer('idcomponente');
             $table->integer('idincidencia');
             $table->string('serie',40);
-            $table->dateTime('fecha_curso');
-            $table->dateTime('fecha_completa');
             $table->timestamps();
         });
     }

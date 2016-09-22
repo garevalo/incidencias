@@ -4,7 +4,7 @@
 
 @section("header")
 	@parent
-
+	<link rel="stylesheet" href="{{ asset("css/jquery.gritter.min.css") }}" />
 @endsection
 
 
@@ -65,7 +65,7 @@
 
 @section("fscript")
 	@parent
-
+	<script src="{{ asset("js/jquery-ui.custom.min.js") }}"></script>
 	<script>
 		app.factory('IncidenciasFactory',function(){
 			var factory={};
@@ -88,10 +88,11 @@
 		});
 	</script>
 
-	<script src="{{ asset("js/jquery-ui.custom.min.js") }}"></script>
+	
 	<script src="{{ asset("js/jquery.dataTables.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.dataTables.bootstrap.min.js") }}"></script>
 
 	<script src="{{ asset("app/controllers/incidencias.js") }}"></script>
+	<script src="{{ asset("js/jquery.gritter.min.js") }}"></script>
 
 @endsection

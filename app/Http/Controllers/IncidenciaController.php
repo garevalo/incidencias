@@ -171,8 +171,33 @@ class IncidenciaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo $id;
-        print_r($request);
+        $datavalidate = array();
+
+        if ($request->estado==3) {
+            $datavalidate = array('diagnostico' =>'required' );
+            $datavalidate = array('descripcion' =>'required' );
+        }
+
+
+        $validator = Validator::make($request->all(), $datavalidate);
+
+        if ($validator->fails()) {
+            $messages = $validator->errors();
+            return response()->json($messages);
+        }else{
+            $Incidencia = Incidencia::find($id);
+            $Incidencia->estado       = $request->estado;
+            $Incidencia->diagnostico   = $request->diagnostico;
+            $Incidencia->descripcion_tecnico    = $request->descripcion;
+            if($request->estado==2){
+                $Incidencia->fecha_curso   = date('Y-m-d');
+            }
+            elseif($request->estado==3){
+                $Incidencia->fecha_completa   = date('Y-m-d');   
+            }
+            
+            return response()->json($Incidencia->save());
+        }
     }
 
     /**

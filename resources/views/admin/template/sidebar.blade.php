@@ -16,7 +16,7 @@
 		</li>
 		<li class="<?= ($menu==3)?'active open':''?>">
 			<a href="{{url('cliente')}}">
-				<i class="menu-icon fa fa-users"></i>
+				<i class="menu-icon glyphicon glyphicon-user"></i>
 				<span class="menu-text"> Clientes </span>
 			</a>
 
@@ -25,7 +25,7 @@
 		@endif
 		<li class="<?= ($menu==2)?'active open':''?>">
 			<a href="{{url('incidencia')}}" class="dropdown-toggle">
-				<i class="menu-icon glyphicon glyphicon-time"></i>
+				<i class="menu-icon glyphicon glyphicon-wrench"></i>
 				<span class="menu-text"> Incidencias </span>
 			</a>
 			<b class="arrow"></b>
@@ -49,6 +49,34 @@
 			</ul>
 
 		</li>
+		@if(Auth::user()->idrol==1)
+		<li class="<?= ($menu==3)?'active open':''?>">
+			<a href="{{url('incidencia')}}" class="dropdown-toggle">
+				<i class="menu-icon glyphicon glyphicon-list-alt"></i>
+				<span class="menu-text"> Reportes </span>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu nav-show">
+				
+				<li class="<?= ($submenu==2.1)?'active':''?>">
+					<a href="{{url('incidencia/create')}}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Incidencias Registradas
+					</a>
+					<b class="arrow"></b>
+				</li>
+				
+				<li class="<?= ($submenu==2.2)?'active':''?>">
+					<a href="{{url('incidencia')}}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Incidencias Atendidas
+					</a>
+					<b class="arrow"></b>
+				</li>
+			</ul>
+
+		</li>
+		@endif
 	</ul><!-- /.nav-list -->
 
 	<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

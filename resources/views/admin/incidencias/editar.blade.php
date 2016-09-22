@@ -66,19 +66,19 @@
         <div class="form-group has-info">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                 <label for="inputEmail3" class="control-label">Estado</label>
-                <select class="form-control input-sm" ng-options="option.nombre_estado for option in estados track by option.idestado" ng-model="selectincidencia" ng-change="estadoclick()"></select>
+                <select class="form-control input-sm" name="estado" ng-options="option.nombre_estado for option in estados track by option.idestado" ng-model="selectincidencia" ng-change="estadoclick()"></select>
             </div>
         </div>
 
         <div class="form-group has-info">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <label for="inputEmail3" class="control-label">Diágnostico</label>
-                <textarea name="diagnostico" id="diagnostico" ng-model="diagnostico" class="form-control" ng-disabled="isdiagnostico"></textarea>
+                <textarea name="diagnostico" id="diagnostico" ng-model="incidencia.diagnostico" class="form-control" ng-disabled="isdiagnostico" ></textarea>
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <label for="inputEmail3" class="control-label">Descripción de la repación</label>
-                <textarea name="descripcion" ng-model="descripcion" class="form-control" ng-disabled="isdescripcion"></textarea>
+                <textarea name="descripcion" ng-model="incidencia.descripcion_tecnico" class="form-control" ng-disabled="isdescripcion" ></textarea>
             </div>
         </div>
 

@@ -38,17 +38,18 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
             //alert(response.nombre);
             if (response === true) {
                 console.log(response);
-                $.gritter.add({
+                /*$.gritter.add({
                         title: 'Notificación',
                         text: '¡El Cliente se guardó correctamente!',
                         //sticky: true,
                         class_name: 'gritter-info'
-                });
+                });*/
+                alert('ok');
                 $('#modalEdit').modal('hide');
                 var table = $('#data-table').DataTable();
                 table.ajax.reload();
             } else {
-                $scope.errorNombre = response.nombre;
+                alert(response);
             }
         }).error(function (response) {
             alert('Ha Ocurrido un error');
