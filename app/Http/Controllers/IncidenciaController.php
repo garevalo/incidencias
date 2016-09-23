@@ -326,4 +326,15 @@ class IncidenciaController extends Controller
                 ->where('incidencia.idincidencia', $id)
                 ->first());
     }
+
+    public function registrados(){
+        $data['titulo'] = "Reporte de Incidencias Registradas";
+        return view('admin.incidencias.reporte_registrado',$data);
+    }
+
+    public function procesarregistrado(){
+        return view('admin.incidencias.reportes.procesar_registrados');
+    }
+
+
 }

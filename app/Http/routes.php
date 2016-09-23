@@ -31,6 +31,10 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::resource('usuario', 'UsuarioController');
 
 	});
+
+    Route::get('incidencia/reporte/procesarregistrado', 'IncidenciaController@procesarregistrado');
+    Route::get('reporte/registrados', 'IncidenciaController@registrados');
+    Route::get('reporte/atendidos', 'IncidenciaController@atendidos');
     Route::get('incidencia/getdata/{id?}', 'IncidenciaController@dataIncidencia');
     Route::get('incidencia/modal/{modal}/{id?}', 'IncidenciaController@modal');
     Route::get('incidencia/data',['as'=>'incidenciadata','uses'=>'IncidenciaController@anyData']);

@@ -50,7 +50,7 @@
 
 		</li>
 		@if(Auth::user()->idrol==1)
-		<li class="<?= ($menu==3)?'active open':''?>">
+		<li class="<?= ($menu==4)?'active open':''?>">
 			<a href="{{url('incidencia')}}" class="dropdown-toggle">
 				<i class="menu-icon glyphicon glyphicon-list-alt"></i>
 				<span class="menu-text"> Reportes </span>
@@ -58,16 +58,16 @@
 			<b class="arrow"></b>
 			<ul class="submenu nav-show">
 				
-				<li class="<?= ($submenu==2.1)?'active':''?>">
-					<a href="{{url('incidencia/create')}}">
+				<li class="<?= ($submenu==4.1)?'active':''?>">
+					<a href="{{url('reporte/registrados')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Incidencias Registradas
 					</a>
 					<b class="arrow"></b>
 				</li>
 				
-				<li class="<?= ($submenu==2.2)?'active':''?>">
-					<a href="{{url('incidencia')}}">
+				<li class="<?= ($submenu==4.2)?'active':''?>">
+					<a href="{{url('reporte/atendidos')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Incidencias Atendidas
 					</a>

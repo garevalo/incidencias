@@ -20,9 +20,6 @@ class AppServiceProvider extends ServiceProvider
       if ($request->is('usuario') || $request->is('usuario/*')) {
         $this->menu = 1 ;
       }
-      elseif ($request->is('cliente') || $request->is('cliente/*')){
-          $this->menu = 3 ;
-      }
       elseif($request->is('incidencia') || $request->is('incidencia/*')){
         $this->menu = 2 ;
         if($request->is('incidencia/create')){
@@ -31,6 +28,12 @@ class AppServiceProvider extends ServiceProvider
         elseif($request->is('incidencia')){
             $this->submenu = '2.2' ;
         }
+      }
+      elseif ($request->is('cliente') || $request->is('cliente/*')){
+          $this->menu = 3 ;
+      }
+      elseif($request->is('reporte') || $request->is('reporte/*')){
+          $this->menu = 4 ;
       }
 
       view()->share(['menu'=>$this->menu,'submenu'=>$this->submenu]);

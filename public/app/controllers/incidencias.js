@@ -105,5 +105,11 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
         }
     }
 
+    $scope.verreporte = function (){
+        var time = new Date().getTime();
+        $scope.urlreporte = API_URL + "incidencia/reporte/procesarregistrado?" + time;
+
+    }
+
 
 });
