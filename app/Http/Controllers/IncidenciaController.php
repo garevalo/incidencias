@@ -228,7 +228,7 @@ class IncidenciaController extends Controller
     public function anyData()
     {
         //$datos = User::select([])->get();
-        return Datatables::of(Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idincidencia')
+        return Datatables::of(Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
             ->join('users', 'users.id', '=', 'incidencia.idtecnico'))
             ->addColumn('check', function ($incidencia) {
                 return '<label class="pos-rel"><input type="checkbox" class="ace"><span class="lbl" id="' . $incidencia->idincidencia . '"></span></label>';
@@ -277,7 +277,7 @@ class IncidenciaController extends Controller
             'incidencia.prioridad',
             'incidencia.estado',
             'clientes.nombre')
-            ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idincidencia')
+            ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
             ->join('users', 'users.id', '=', 'incidencia.idtecnico')
             ->where('users.id', Auth::user()->id)
             ->orderBy('prioridad', 'desc'))
