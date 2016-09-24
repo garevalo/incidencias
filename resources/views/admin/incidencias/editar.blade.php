@@ -83,7 +83,7 @@
         </div>
         @if(Auth::user()->idrol!=1)
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" id="btn-save" ng-disabled="frmincidencia.$invalid">Guardar</button>
+            <button type="submit" class="btn btn-primary" id="btn-save" ng-disabled="frmincidencia.$invalid || incidencia.estado==3">Guardar</button>
         </div>
         @endif
 
