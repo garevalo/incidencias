@@ -1,6 +1,6 @@
 @extends("admin.template.main")
 
-@section("title","Reportes por mes")
+@section("title","Reportes incidencias atendidas")
 
 @section("header")
     @parent
@@ -11,7 +11,7 @@
 @section("content")
     <div class="container-fluid">
         <div class="form-group has-info">
-            <form name="frm" id="frm" action="{{url('incidencia/reporte/procesarregistrado')}}">
+            <form name="frm" id="frm" action="{{url('incidencia/reporte/procesaratendido')}}">
                 {{ csrf_field()  }}
                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

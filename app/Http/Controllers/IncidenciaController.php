@@ -14,8 +14,13 @@ use App\Estado;
 use App\IncidenciaComponente;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Console\Input\Input;
 use Validator;
 use Yajra\Datatables\Datatables;
+
+
+
+
 
 class IncidenciaController extends Controller
 {
@@ -251,7 +256,7 @@ class IncidenciaController extends Controller
                 return $estado;
             })
             ->addColumn('edit', function ($incidencia) {
-                return '<a ng-click="modalIncidencia(2,' . $incidencia->idincidencia . ')" class="green"><i class="ace-icon fa fa-pencil bigger-130"></i></a>';
+                return '<a href="javascript:void(0)" ng-click="modalIncidencia(2,' . $incidencia->idincidencia . ')" class="green"><i class="glyphicon glyphicon-search"></i></a>';
             })
             ->make(true);
     }
@@ -332,9 +337,41 @@ class IncidenciaController extends Controller
         return view('admin.incidencias.reporte_registrado',$data);
     }
 
-    public function procesarregistrado(){
-        return view('admin.incidencias.reportes.procesar_registrados');
+    public function procesarregistrado(Request $request){
+
+        $fechaini =  $this->fecha($request->fechaini);
+        $fechafin =  $this->fecha($request->fechafin);
+
+        $data['incidencias'] = Incidencia::select(DB::raw('count(idincidencia) cantidad,concat(day(cast(created_at as DATE)),"/",month(cast(created_at as DATE))) dia'))
+            ->groupBy(DB::raw('day(cast(created_at as DATE))'))
+            ->whereBetween(DB::raw('date(cast(created_at as Date))'), [$fechaini, $fechafin])
+            ->get();
+        $data['tipo'] = 'Registrados';
+        return view('admin.incidencias.reportes.procesar_registrados',$data);
     }
 
+    public function atendidos(){
+        $data['titulo'] = "Reporte de Incidencias Atendidas";
+        return view('admin.incidencias.reporte_atendido',$data);
+    }
+
+    public function procesaratendido(Request $request){
+
+        $fechaini =  $this->fecha($request->fechaini);
+        $fechafin =  $this->fecha($request->fechafin);
+
+        $data['incidencias'] = Incidencia::select(DB::raw('count(idincidencia) cantidad,concat(day(fecha_completa),"/",month(fecha_completa)) dia'))
+            ->groupBy(DB::raw('day(fecha_completa)'))
+            ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
+            ->where('estado','3')
+            ->get();
+        $data['tipo'] = 'atendidos';
+        return view('admin.incidencias.reportes.procesar_registrados',$data);
+    }
+
+    private function fecha($string){
+        $fecha_array =  explode('/',$string);
+        return $fecha_array[2].'-'.$fecha_array[1].'-'.$fecha_array[0];
+    }
 
 }

@@ -51,7 +51,7 @@
 	</div>
 
 	<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<ng-include src="urlmodal"></ng-include>
 			</div>
