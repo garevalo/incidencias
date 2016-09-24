@@ -192,8 +192,12 @@ class IncidenciaController extends Controller
         }else{
             $Incidencia = Incidencia::find($id);
             $Incidencia->estado       = $request->estado;
-            $Incidencia->diagnostico   = $request->diagnostico;
-            $Incidencia->descripcion_tecnico    = $request->descripcion;
+            if($request->estado==2) {
+             $Incidencia->diagnostico = $request->diagnostico;
+            }
+            if ($request->estado==3) {
+                $Incidencia->descripcion_tecnico = $request->descripcion;
+            }
             if($request->estado==2){
                 $Incidencia->fecha_curso   = date('Y-m-d');
             }
