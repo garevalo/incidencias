@@ -331,7 +331,7 @@ class IncidenciaController extends Controller
         if (empty($id))
             return response()->json(Incidencia::all());
         else
-            return response()->json(Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idincidencia')
+            return response()->json(Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
                 ->where('incidencia.idincidencia', $id)
                 ->first());
     }

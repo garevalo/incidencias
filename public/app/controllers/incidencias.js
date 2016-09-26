@@ -59,6 +59,7 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
     $scope.modalIncidencia = function (modal, idincidencia) {
         $scope.incidencia = "";
         $scope.estados = "";
+        $scope.selectincidencia = "";
         var time = new Date().getTime();
 
         if (modal == "new") {
