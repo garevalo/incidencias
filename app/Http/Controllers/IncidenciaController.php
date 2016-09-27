@@ -36,7 +36,7 @@ class IncidenciaController extends Controller
 
     public function index(Request $request)
     {
-        if ($request->user()->idrol == 1) {
+        if ($request->user()->idrol == 1 ||  $request->user()->idrol == 3) {
             return view("admin.incidencias.incidencias");
         } else {
             return view("admin.incidencias.incidencias-tecnico");

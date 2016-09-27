@@ -41,5 +41,15 @@ class UsersTableSeeder extends Seeder
             'password'  => bcrypt('secret'),
             'idrol'		=> '2'
         ]);
+
+        DB::table('users')->insert([
+            'name'      => 'recepcionista',
+            'apellido'  => 'recepcionista',
+            'usuario'   => 'recepcionista',
+            'email'     => 'recepcionista@gmail.com',
+            'image'     => '/avatars/profile-pic.jpg',
+            'password'  => bcrypt('secret'),
+            'idrol'     => '3'
+        ]);
     }
 }

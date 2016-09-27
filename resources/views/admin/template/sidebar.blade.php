@@ -23,6 +23,7 @@
 			<b class="arrow"></b>
 		</li>
 		@endif
+
 		<li class="<?= ($menu==2)?'active open':''?>">
 			<a href="{{url('incidencia')}}" class="dropdown-toggle">
 				<i class="menu-icon glyphicon glyphicon-wrench"></i>
@@ -30,7 +31,7 @@
 			</a>
 			<b class="arrow"></b>
 			<ul class="submenu nav-show">
-				@if(Auth::user()->idrol==1)
+				@if(Auth::user()->idrol==1 || Auth::user()->idrol==3)
 				<li class="<?= ($submenu==2.1)?'active':''?>">
 					<a href="{{url('incidencia/create')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -49,6 +50,7 @@
 			</ul>
 
 		</li>
+
 		@if(Auth::user()->idrol==1)
 		<li class="<?= ($menu==4)?'active open':''?>">
 			<a href="{{url('incidencia')}}" class="dropdown-toggle">

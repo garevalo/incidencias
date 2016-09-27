@@ -17,7 +17,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label for="inputEmail3" class="control-label">Fecha Inicio</label>
                         <div class="input-group">
-                            <input type="text" name="fechaini" id="desde" class="input-sm form-control" required>
+                            <input type="text" name="fechaini" id="desde" class="input-sm form-control" required readonly="">
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar bigger-110"></i>
                             </span>
@@ -26,7 +26,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label for="inputEmail3" class="control-label">Fecha Fin</label>
                         <div class="input-group">
-                            <input type="text" name="fechafin" id="hasta" class="input-sm form-control" required>
+                            <input type="text" name="fechafin" id="hasta" class="input-sm form-control" required readonly="">
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar bigger-110"></i>
                             </span>
