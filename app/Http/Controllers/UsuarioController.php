@@ -65,7 +65,7 @@ class UsuarioController extends Controller
             'correo'    => 'required|email|unique:users,email',
             'usuario'   => 'required|min:4|max:40|alpha_num|unique:users,usuario',
             'password'  => 'required|min:6|max:40|alpha_num',
-            'rol'       => 'required|min:1|max:2|numeric',
+            'rol'       => 'required|digits_between:1,2|numeric',
         ]);
 
         if ($validator->fails()) {
