@@ -179,7 +179,7 @@ class UsuarioController extends Controller
             'correo'    => 'required|email|unique:users,email,'.$id,
             'usuario'   => 'required|min:4|max:40|alpha_num|unique:users,usuario,'.$id,
             'password'  => 'min:6|max:40|alpha_num',
-            'rol'       => 'required|min:1|max:2|numeric',
+            'rol'       => 'required|digits_between:1,2|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -224,6 +224,9 @@ class UsuarioController extends Controller
             }
             elseif ($user->idrol==2) {
                 $rol = "Técnico";
+            }
+            elseif ($user->idrol==3) {
+                $rol = "Recepcionista";
             }
             return $rol;
         })
