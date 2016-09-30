@@ -18,7 +18,7 @@
 					<a href="index.html" class="navbar-brand">
 						<small>
 							<i class="fa fa-leaf"></i>
-							Sistema de IncidenciaS
+							Sistema para el control de atención de clientes
 						</small>
 					</a>
 				</div>
