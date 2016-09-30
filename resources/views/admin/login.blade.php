@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Login Page - Ace Admin</title>
+		<title>Iniciar Sesión</title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -38,8 +38,8 @@
 							<div class="center">
 								<h1>
 									<i class="ace-icon fa fa-wrench green"></i>
-									<span class="red">Sistema</span>
-									<span class="white" id="id-text2">Incidencias</span>
+									<span class="red">Sistema para el </span>
+									<span class="white" id="id-text2">control de atención de clientes</span>
 								</h1>
 								<h4 class="blue" id="id-company-text">&copy; v1</h4>
 							</div> 
@@ -57,20 +57,7 @@
                                 */ ?>
 							</div><!-- /.position-relative -->
 
-							<div class="navbar-fixed-top align-right">
-								<br />
-								&nbsp;
-								<a id="btn-login-dark" href="#">Dark</a>
-								&nbsp;
-								<span class="blue">/</span>
-								&nbsp;
-								<a id="btn-login-blur" href="#">Blur</a>
-								&nbsp;
-								<span class="blue">/</span>
-								&nbsp;
-								<a id="btn-login-light" href="#">Light</a>
-								&nbsp; &nbsp; &nbsp;
-							</div>
+							
 						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
