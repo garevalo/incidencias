@@ -92,12 +92,12 @@ class IncidenciaController extends Controller
 
         $validator = Validator::make($request->all(), $datavalidate, $messages);
 
-        if ($validator->fails()) {
+        if ($validator->fails()) { /*si hay errores devuelve a la vista*/
             return redirect('incidencia/create')->withErrors($validator)->withInput();
-        } else {
+        } else { /*si no hay eerores crear el registro*/
 
             // DB::transaction(function () {
-            if (empty($request->idcliente)) {
+            if (empty($request->idcliente)) {/*si no existe un cliente lo registra*/
                 $Cliente = new Cliente;
                 $Cliente->nombre = $request->cliente;
                 $Cliente->dni_ruc = $request->ruc_dni;
@@ -107,11 +107,11 @@ class IncidenciaController extends Controller
                 $idcliente = $Cliente::select('idcliente')->orderBy('idcliente', 'desc')->take(1)->first();
                 $idcliente = $idcliente->idcliente;
             } else {
-                $idcliente = $request->idcliente;
+                $idcliente = $request->idcliente; /*si ya existe retorna su id de cliente */
             }
 
             if (!empty($idcliente)) {
-
+                /*requeste es la data que manda el formulario*/
                 $Incidencia = new Incidencia;
                 $Incidencia->idcliente = $idcliente;
                 $Incidencia->marca = $request->marca;
@@ -124,7 +124,7 @@ class IncidenciaController extends Controller
                 $Incidencia->idtecnico = $request->tecnico;
                 $Incidencia->estado = 1;
 
-                if ($Incidencia->save()) {
+                if ($Incidencia->save()) { /*aca hace el registro o insert */ 
 
                     $idincidencia = $Incidencia::select('idincidencia')->orderBy('idincidencia', 'desc')->take(1)->first();
                     foreach ($request->componente as $key => $componente) {
@@ -132,14 +132,14 @@ class IncidenciaController extends Controller
                         $IncidenciaComponente->idcomponente = $componente;
                         $IncidenciaComponente->idincidencia = $idincidencia->idincidencia;
                         $IncidenciaComponente->serie = $request->serie_componente[$componente];
-                        $IncidenciaComponente->save();
+                        $IncidenciaComponente->save(); /*aca regista a la base de datos los componentes del equipo*/
                     }
                 }
             }
 
             // });
 
-            return redirect('incidencia');
+            return redirect('incidencia'); /*cunado termina de registrar te envia a la lista de registros*/
 
         }
 

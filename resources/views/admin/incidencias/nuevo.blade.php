@@ -17,7 +17,7 @@
 	<div class="col-xs-12 col-sm-12 col-lg-12">
 		<div class="widget-box widget-color-blue">
 			<div class="widget-header">
-				<h4 class="widget-title">Nueva Incidencia</h4>
+				<h4 class="widget-title">Nueva Atención</h4>
 				<span class="widget-toolbar">
 					<a href="#" data-action="reload">
 						<i class="ace-icon fa fa-refresh"></i>
@@ -220,7 +220,7 @@
 							<div class="col-md-offset-3 col-md-9">
 								<button class="btn btn-primary" type="submit">
 									<i class="ace-icon fa fa-check bigger-110"></i>
-									Crear Incidencia
+									Crear Atención
 								</button>
 							</div>
 						</div>	

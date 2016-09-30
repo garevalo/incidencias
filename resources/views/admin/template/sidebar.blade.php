@@ -27,7 +27,7 @@
 		<li class="<?= ($menu==2)?'active open':''?>">
 			<a href="{{url('incidencia')}}" class="dropdown-toggle">
 				<i class="menu-icon glyphicon glyphicon-wrench"></i>
-				<span class="menu-text"> Incidencias </span>
+				<span class="menu-text"> Atención de Cliente </span>
 			</a>
 			<b class="arrow"></b>
 			<ul class="submenu nav-show">
@@ -35,7 +35,7 @@
 				<li class="<?= ($submenu==2.1)?'active':''?>">
 					<a href="{{url('incidencia/create')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Nueva Incidencia
+						Nueva Atención
 					</a>
 					<b class="arrow"></b>
 				</li>
@@ -43,7 +43,7 @@
 				<li class="<?= ($submenu==2.2)?'active':''?>">
 					<a href="{{url('incidencia')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Lista de Incidencias
+						Lista de Atención
 					</a>
 					<b class="arrow"></b>
 				</li>

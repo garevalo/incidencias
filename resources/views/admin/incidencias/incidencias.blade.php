@@ -14,7 +14,7 @@
 		<div class="pull-right tableTools-container"></div>
 	</div>
 	<div class="table-header">
-		Incidencias
+		Lista de Atención
 	</div>
 
 	<!-- div.table-responsive -->
