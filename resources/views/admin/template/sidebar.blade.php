@@ -14,6 +14,9 @@
 
 			<b class="arrow"></b>
 		</li>
+		@endif
+
+		@if(Auth::user()->idrol==1 || Auth::user()->idrol==3)
 		<li class="<?= ($menu==3)?'active open':''?>">
 			<a href="{{url('cliente')}}">
 				<i class="menu-icon glyphicon glyphicon-user"></i>

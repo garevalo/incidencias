@@ -61,6 +61,10 @@
                 <label for="inputEmail3" class="control-label orange">Prioridad</label>
                 <label class="form-control input-sm"><% nombreprioridad %></label>
             </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                <label for="inputEmail3" class="control-label orange">Precio Estimado</label>
+                <label class="form-control input-sm"><% incidencia.precio_estimado %></label>
+            </div>
         </div>
         <h3>Técnico</h3>
         <div class="form-group has-info">
