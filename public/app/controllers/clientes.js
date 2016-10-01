@@ -48,7 +48,7 @@ app.controller('ClientesController', function ($scope, $compile, $http, API_URL,
                 table.ajax.reload();
             } else {
                 $scope.errorNombre = response.nombre;
-                $scope.errorRucDni = response.dni_ruc;
+                $scope.errorRucDni = response.rucdni;
                 $scope.errorCorreo = response.correo;
                 $scope.errorTelefono = response.telefono;
                 $scope.errorDireccion = response.direccion;

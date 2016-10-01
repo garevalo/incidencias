@@ -27,6 +27,8 @@ class CreateIncidenciaTable extends Migration
             $table->integer('idtecnico');
             $table->string('diagnostico',200);
             $table->string('descripcion_tecnico',200);
+            $table->decimal('precio_estimado',9,2);
+            $table->decimal('precio_final', 9, 2);
             $table->dateTime('fecha_curso');
             $table->dateTime('fecha_completa');
             $table->timestamps();

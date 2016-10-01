@@ -22,11 +22,7 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
     $scope.guardarIncidencia = function () {
 
         var url = API_URL + "incidencia/" + $scope.incidencia.idincidencia;
-        $scope.errorNombre      = '';
-        $scope.errorRucDni      = '';
 
-        console.log($scope.selectincidencia);
-        console.log($scope.incidencia.idincidencia);
         var frmdatos = $( "#frmincidencia" ).serialize();
         $http({
             method: 'POST',
@@ -44,12 +40,12 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
                         //sticky: true,
                         class_name: 'gritter-info'
                 });*/
-                alert('ok');
+                alert('Se Registro correctamente');
                 $('#modalEdit').modal('hide');
                 var table = $('#data-table').DataTable();
                 table.ajax.reload();
             } else {
-                alert(response);
+               $scope.error = response;
             }
         }).error(function (response) {
             alert('Ha Ocurrido un error');
@@ -93,9 +89,11 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
     }
     $scope.isdiagnostico=true;
     $scope.isdescripcion=true;
+    $scope.ispreciofinal=true;
     $scope.estadoclick = function () {
         $scope.isdiagnostico=true;
         $scope.isdescripcion=true;
+        $scope.ispreciofinal=true;
         var idestado = $scope.selectincidencia.idestado;
         console.log(idestado);
         if(idestado == 2){
@@ -103,6 +101,7 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
         }
         if(idestado == 3){
             $scope.isdescripcion=false;
+            $scope.ispreciofinal=false;
         }
     }
 

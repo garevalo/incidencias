@@ -63,7 +63,7 @@
 				<li class="<?= ($submenu==4.1)?'active':''?>">
 					<a href="{{url('reporte/registrados')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Incidencias Registradas
+						Atenciones Registradas
 					</a>
 					<b class="arrow"></b>
 				</li>
@@ -71,7 +71,14 @@
 				<li class="<?= ($submenu==4.2)?'active':''?>">
 					<a href="{{url('reporte/atendidos')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Incidencias Atendidas
+						Atenciones Completas
+					</a>
+					<b class="arrow"></b>
+				</li>
+				<li class="<?= ($submenu==4.3)?'active':''?>">
+					<a href="{{url('reporte/atendidosxtecnico')}}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Atenciones por técnico
 					</a>
 					<b class="arrow"></b>
 				</li>

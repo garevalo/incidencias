@@ -36,6 +36,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('reporte/registrados', 'IncidenciaController@registrados');
     Route::post('incidencia/reporte/procesaratendido', 'IncidenciaController@procesaratendido');
     Route::get('reporte/atendidos', 'IncidenciaController@atendidos');
+
+    Route::post('incidencia/reporte/procesaratendidoxtecnico', 'IncidenciaController@procesaratendidoxtecnico');
+    Route::get('reporte/atendidosxtecnico', 'IncidenciaController@atendidosxtecnico');
+
+
     Route::get('incidencia/getdata/{id?}', 'IncidenciaController@dataIncidencia');
     Route::get('incidencia/modal/{modal}/{id?}', 'IncidenciaController@modal');
     Route::get('incidencia/data',['as'=>'incidenciadata','uses'=>'IncidenciaController@anyData']);

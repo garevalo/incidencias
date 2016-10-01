@@ -88,7 +88,8 @@ class IncidenciaController extends Controller
             'condicion' => 'required|min:2|max:20|alpha',
             'componente' => 'required',
             'tecnico' => 'required|numeric',
-            'prioridad' => 'required|digits_between:1,2|numeric');
+            'prioridad' => 'required|digits_between:1,2|numeric',
+            'precioestimado' => 'required|numeric');
 
         $validator = Validator::make($request->all(), $datavalidate, $messages);
 
@@ -122,6 +123,7 @@ class IncidenciaController extends Controller
                 $Incidencia->condicion = $request->condicion;
                 $Incidencia->prioridad = $request->prioridad;
                 $Incidencia->idtecnico = $request->tecnico;
+                $Incidencia->precio_estimado = $request->precioestimado;
                 $Incidencia->estado = 1;
 
                 if ($Incidencia->save()) { /*aca hace el registro o insert */ 
@@ -181,6 +183,7 @@ class IncidenciaController extends Controller
         if ($request->estado==3) {
             $datavalidate = array('diagnostico' =>'required' );
             $datavalidate = array('descripcion' =>'required' );
+            $datavalidate = array('preciofinal' =>'required|numeric' );
         }
 
 
@@ -194,16 +197,14 @@ class IncidenciaController extends Controller
             $Incidencia->estado       = $request->estado;
             if($request->estado==2) {
              $Incidencia->diagnostico = $request->diagnostico;
+             $Incidencia->fecha_curso   = date('Y-m-d');
             }
             if ($request->estado==3) {
                 $Incidencia->descripcion_tecnico = $request->descripcion;
+                $Incidencia->fecha_completa   = date('Y-m-d');
+                $Incidencia->precio_final = $request->preciofinal; 
             }
-            if($request->estado==2){
-                $Incidencia->fecha_curso   = date('Y-m-d');
-            }
-            elseif($request->estado==3){
-                $Incidencia->fecha_completa   = date('Y-m-d');   
-            }
+            
             
             return response()->json($Incidencia->save());
         }
@@ -337,7 +338,7 @@ class IncidenciaController extends Controller
     }
 
     public function registrados(){
-        $data['titulo'] = "Reporte de Incidencias Registradas";
+        $data['titulo'] = "Reporte de Atenciones Registradas";
         return view('admin.incidencias.reporte_registrado',$data);
     }
 
@@ -355,7 +356,7 @@ class IncidenciaController extends Controller
     }
 
     public function atendidos(){
-        $data['titulo'] = "Reporte de Incidencias Atendidas";
+        $data['titulo'] = "Reporte de Atenciones Completas ";
         return view('admin.incidencias.reporte_atendido',$data);
     }
 
@@ -371,6 +372,30 @@ class IncidenciaController extends Controller
             ->get();
         $data['tipo'] = 'atendidos';
         return view('admin.incidencias.reportes.procesar_registrados',$data);
+    }
+
+    public function atendidosxtecnico(){
+        $data['titulo'] = "Reporte de Atenciones por técnico";
+        return view('admin.incidencias.reporte_atendido_tecnico',$data);
+    }
+
+    public function procesaratendidoxtecnico(Request $request){
+
+        $fechaini =  $this->fecha($request->fechaini);
+        $fechafin =  $this->fecha($request->fechafin);
+
+        /* return Datatables::of(Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
+            ->join('users', 'users.id', '=', 'incidencia.idtecnico'))*/
+
+        $data['incidencias'] = Incidencia::select(DB::raw('count(idincidencia) cantidad,concat(users.name," ",users.apellido) as tecnico'))
+            ->join('users', 'users.id', '=', 'incidencia.idtecnico')
+            ->groupBy('incidencia.idtecnico')
+            ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
+            ->where('estado','3')
+            ->get();
+        $data['tipo'] = 'atendidos por técnico';
+        //print_r($data['incidencias']);
+        return view('admin.incidencias.reportes.procesar_atendidos_tecnico',$data);
     }
 
     private function fecha($string){

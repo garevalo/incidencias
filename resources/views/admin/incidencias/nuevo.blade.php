@@ -48,8 +48,8 @@
 											<div class="form-group has-info">
 												<div class="col-lg-3 ">
 													<label for="inputInfo">Cliente</label>
-													<input type="text" name="cliente" id="cliente"  class="form-control input-sm" value="{{ old('cliente') }}">
-													<input type="hidden" id="idcliente" name="idcliente">
+													<input type="text" name="cliente" id="cliente"  class="form-control input-sm" value="{{ old('cliente') }}" required="">
+													<input type="hidden" id="idcliente" name="idcliente" value="">
 													<div id=" " class="help-block orange2">{{$errors->first('cliente')}}</div>
 												</div>
 												<div class="col-lg-3">
@@ -87,29 +87,29 @@
 											<div class="form-group has-info">
 												<div class="col-lg-4">
 													<label for="form-field-select-1">Marca</label>
-													<input type="text" name="marca" id="form-field-select-1" class="form-control input-sm" value="{{old('marca')}}">
+													<input type="text" name="marca" id="form-field-select-1" class="form-control input-sm" value="{{old('marca')}}" required="">
 													<div id=" " class="help-block orange2">{{$errors->first('marca')}}</div>
 												</div>
 												<div class="col-lg-4">
 													<label for="form-field-select-2">Modelo</label>
-													<input type="text" name="modelo" id="form-field-select-1" class="form-control input-sm" value="{{old('modelo')}}">
+													<input type="text" name="modelo" id="form-field-select-1" class="form-control input-sm" value="{{old('modelo')}}" required="">
 													<div id=" " class="help-block orange2">{{$errors->first('modelo')}}</div>
 												</div>
 												<div class="col-lg-4">
 													<label for="form-field-select-3">Serie</label>
-													<input type="text" name="serie" id="form-field-select-1" class="form-control input-sm" value="{{old('serie')}}">
+													<input type="text" name="serie" id="form-field-select-1" class="form-control input-sm" value="{{old('serie')}}" required="">
 													<div id=" " class="help-block orange2">{{$errors->first('serie')}}</div>
 												</div>
 											</div>
 											<div class="form-group has-info">
 												<div class="col-lg-8">
 													<label for="form-field-select-1">Descripción para el servicio</label>
-													<textarea id="form-field-select-1" class="form-control input-sm" rows="3" name="descripcion_servicio">{{old("descripcion_servicio")}}</textarea>
+													<textarea id="form-field-select-1" class="form-control input-sm" rows="3" name="descripcion_servicio" required="">{{old("descripcion_servicio")}}</textarea>
 													<div id="" class="help-block orange2">{{$errors->first('descripcion_servicio')}}</div>
 												</div>
 												<div class="col-lg-4">
 													<label>Tipo</label>
-													<select class="form-control input-sm" name="tipo_equipo">
+													<select class="form-control input-sm" name="tipo_equipo" required="">
 														<option value="">Seleccione Tipo de equipo</option>
 														<option value="pc">PC</option>
 														<option value="laptop">Laptop</option>
@@ -188,7 +188,7 @@
 										<div class="form-group has-info">
 											<div class="col-lg-6">
 												<label for="form-field-select-1">Asignar Técnico</label>
-												<select id="inputInfo" class="form-control input-sm" name="tecnico">
+												<select id="inputInfo" class="form-control input-sm" name="tecnico" required="">
 													<option value="">Selecciones Técnico</option>
 													@foreach($tecnicos as $tecnico)
 														<option value="{{$tecnico->id}}">{{$tecnico->name.' '.$tecnico->apellido}}</option>
@@ -199,13 +199,18 @@
 
 											<div class="col-lg-6">
 												<label for="form-field-select-1">Prioridad</label>
-												<select id="inputInfo" class="form-control input-sm" name="prioridad">
+												<select class="form-control input-sm" name="prioridad" required="">
 													<option value="">Selecciones prioridad</option>
 													<option value="1">Baja</option>
 													<option value="2">Media</option>
 													<option value="3">Alta</option>
 												</select>
 												<div  class="help-block orange2">{{$errors->first('prioridad')}}</div>
+											</div>
+											<div class="col-lg-6">
+												<label for="form-field-select-1">Precio Estimado</label>
+												<input type="number" step="any" class="form-control input-sm" name="precioestimado" required="">
+												<div  class="help-block orange2">{{$errors->first('precioestimado')}}</div>
 											</div>
 										</div>	
 
