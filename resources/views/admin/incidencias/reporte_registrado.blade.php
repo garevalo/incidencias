@@ -64,8 +64,8 @@
 
 @section("fscript")
     @parent
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="{{ asset("js/higcharts/js/highcharts.js") }}"></script>
+    <script src="{{ asset("js/higcharts/js/modules/exporting.js") }}"></script>
 
     <script src="{{ asset("myjs/funciones.js") }}"></script>
     <script src="{{ asset("myjs/reportes.js") }}"></script>
