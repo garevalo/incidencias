@@ -163,7 +163,7 @@
 														</div>
 													</div>
 													<div class="col-lg-6">
-														<input type="text" name="serie_componente[{{$componente->idcomponente}}]" id="form-field-select-1" class="form-control input-sm" placeholder="N° Serie">
+														<input type="text" name="serie_componente[{{$componente->idcomponente}}]" id="form-field-select-1" class="form-control input-sm" placeholder="">
 													</div>
 												</div>
 												
