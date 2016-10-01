@@ -44,7 +44,7 @@
 					<th>Técnico</th>
 					<th>Estado</th>
 					<th>Prioridad</th>
-					<th style="text-align: center;"><a class="btn btn-success btn-sm"href="{{url('incidencia/create')}}">Nueva Incidencia</a></th>
+					<th style="text-align: center;"><a class="btn btn-success btn-sm"href="{{url('incidencia/create')}}">Nueva Atención</a></th>
 				</tr>
 			</thead>
 		</table>
