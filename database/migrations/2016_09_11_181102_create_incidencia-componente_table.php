@@ -17,7 +17,7 @@ class CreateIncidenciaComponenteTable extends Migration
             $table->increments('id_inc_comp');
             $table->integer('idcomponente');
             $table->integer('idincidencia');
-            $table->string('serie',40);
+            $table->string('serie_componente',40);
             $table->timestamps();
         });
     }

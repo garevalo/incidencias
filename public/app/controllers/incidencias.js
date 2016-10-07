@@ -34,13 +34,13 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
             //alert(response.nombre);
             if (response === true) {
                 console.log(response);
-                /*$.gritter.add({
-                        title: 'Notificación',
-                        text: '¡El Cliente se guardó correctamente!',
-                        //sticky: true,
+                $.gritter.add({
+                       title: 'Notificación',
+                        text: '¡Se actualizó Atención correctamente!',
+                        sticky: true,
                         class_name: 'gritter-info'
-                });*/
-                alert('Se Registro correctamente');
+                });
+                //alert('Se Registro correctamente');
                 $('#modalEdit').modal('hide');
                 var table = $('#data-table').DataTable();
                 table.ajax.reload();
@@ -62,11 +62,13 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
             $scope.urlmodal = API_URL + "incidencia/modal/new?" + time;
         } else {
             $http.get(API_URL + 'incidencia/getdata/' + idincidencia).success(function (data, status) {
-                $scope.incidencia = data;
-                $scope.selectincidencia = {idestado: data.estado };
-                if(data.prioridad == 1){
+                console.log(data);
+                $scope.incidencia = data[0];
+                $scope.incidenciacomponente = data;
+                $scope.selectincidencia = {idestado: data[0].estado };
+                if(data[0].prioridad == 1){
                     $scope.nombreprioridad = 'Baja' ;
-                }else if(data.prioridad==2){
+                }else if(data[0].prioridad==2){
                     $scope.nombreprioridad = 'Media' ;
                 }else{
                     $scope.nombreprioridad = 'Alta' ;

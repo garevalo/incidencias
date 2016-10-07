@@ -38,7 +38,7 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-3 control-label">Correo</label>
             <div class="col-sm-9">
-                <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo"  ng-model="cliente.correo" ng-required="true">
+                <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo"  ng-model="cliente.correo" >
                 <span class="label label-warning label-white middle" ng-bind="errorCorreo"></span>
             </div>
         </div>

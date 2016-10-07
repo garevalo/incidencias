@@ -54,8 +54,8 @@ class ClienteController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nombre'    => 'required|min:4|max:40|string',
-            'rucdni'  => 'required|digits_between:8,11|numeric',
-            'correo'    => 'required|email|unique:clientes,correo',
+            'rucdni'  => 'required|dni_ruc|numeric',
+            'correo'    => 'email|unique:clientes,correo',
             'telefono'   => 'required|digits_between:7,9|numeric|unique:clientes,telefono',
             'direccion'  => 'required|min:4|max:60|string'
         ]);
@@ -109,8 +109,8 @@ class ClienteController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nombre'    => 'required|min:4|max:40|string',
-            'dni_ruc'  => 'required|digits_between:8,11|numeric',
-            'correo'    => 'required|email',
+            'dni_ruc'  => 'required|dni_ruc|numeric',
+            'correo'    => 'email|unique:clientes,correo',
             'telefono'   => 'required|digits_between:7,9|numeric',
             'direccion'  => 'required|min:4|max:60|string'
         ]);
@@ -136,7 +136,8 @@ class ClienteController extends Controller
                 return '<label class="pos-rel"><input type="checkbox" class="ace"><span class="lbl" id="'.$cliente->idcliente.'"></span></label>';
             })
             ->addColumn('edit',function($cliente){
-                return '<a ng-click="modalCliente(2,'.$cliente->idcliente.')" class="green"><i class="ace-icon fa fa-pencil bigger-130"></i></a>';
+                return '<a href="javascript:void(0)" ng-click="modalCliente(2,'.$cliente->idcliente.')" class="blue"><i class="ace-icon fa fa-pencil bigger-130"></i></a>
+                        <a href="javascript:void(0)" ng-click="modalCliente(2,'.$cliente->idcliente.')" class="red"><i class="glyphicon glyphicon-trash"></i></a>';
             })
             ->make(true);
     }

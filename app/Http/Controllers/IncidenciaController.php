@@ -75,21 +75,32 @@ class IncidenciaController extends Controller
         if (empty($request->idcliente)) {
             $datavalidate = array(
                 'cliente' => 'required|min:4|max:40|string',
-                'ruc_dni' => 'required|digits_between:8,11|numeric',
+                'ruc_dni' => 'required|dni_ruc|numeric',
                 'telefono' => 'required|digits_between:7,9|numeric|unique:clientes,telefono',
-                'direccion' => 'required|min:4|max:40|string');
-        }
-        $datavalidate = array(
-            'marca' => 'required|min:2|max:40|alpha_num',
-            'modelo' => 'required|min:2|max:40|alpha_num',
-            'serie' => 'required|min:2|max:40|alpha_num',
-            'descripcion_servicio' => 'required|min:2|max:40|string',
-            'tipo_equipo' => 'required|min:2|max:20|alpha',
-            'condicion' => 'required|min:2|max:20|alpha',
-            'componente' => 'required',
-            'tecnico' => 'required|numeric',
-            'prioridad' => 'required|digits_between:1,2|numeric',
-            'precioestimado' => 'required|numeric');
+                'direccion' => 'required|min:4|max:40|string',
+                'marca' => 'required|min:2|max:40|alpha_num',
+                'modelo' => 'required|min:2|max:40|alpha_num',
+                'serie' => 'required|min:2|max:40|alpha_num',
+                'descripcion_servicio' => 'required|min:2|max:40|string',
+                'tipo_equipo' => 'required|min:2|max:20|alpha',
+                'condicion' => 'required|min:2|max:20|alpha',
+                'componente' => 'required',
+                'tecnico' => 'required|numeric',
+                'prioridad' => 'required|digits_between:1,2|numeric',
+                'precioestimado' => 'required|numeric');
+            } else{
+            $datavalidate = array(
+                'marca' => 'required|min:2|max:40|alpha_num',
+                'modelo' => 'required|min:2|max:40|alpha_num',
+                'serie' => 'required|min:2|max:40|alpha_num',
+                'descripcion_servicio' => 'required|min:2|max:40|string',
+                'tipo_equipo' => 'required|min:2|max:20|alpha',
+                'condicion' => 'required|min:2|max:20|alpha',
+                'componente' => 'required',
+                'tecnico' => 'required|numeric',
+                'prioridad' => 'required|digits_between:1,2|numeric',
+                'precioestimado' => 'required|numeric');
+            }
 
         $validator = Validator::make($request->all(), $datavalidate, $messages);
 
@@ -133,7 +144,7 @@ class IncidenciaController extends Controller
                         $IncidenciaComponente = new IncidenciaComponente;
                         $IncidenciaComponente->idcomponente = $componente;
                         $IncidenciaComponente->idincidencia = $idincidencia->idincidencia;
-                        $IncidenciaComponente->serie = $request->serie_componente[$componente];
+                        $IncidenciaComponente->serie_componente = $request->serie_componente[$componente];
                         $IncidenciaComponente->save(); /*aca regista a la base de datos los componentes del equipo*/
                     }
                 }
@@ -332,9 +343,12 @@ class IncidenciaController extends Controller
         if (empty($id))
             return response()->json(Incidencia::all());
         else
-            return response()->json(Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
+            return response()->json(
+                Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
+                ->join('incidencia-componente','incidencia-componente.idincidencia','=','incidencia.idincidencia')
+                ->join('componentes','incidencia-componente.idcomponente','=','componentes.idcomponente')
                 ->where('incidencia.idincidencia', $id)
-                ->first());
+                ->get());
     }
 
     public function registrados(){

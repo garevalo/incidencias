@@ -19,7 +19,7 @@ class CreateClientesTable extends Migration
             $table->integer('dni_ruc');
             $table->integer('telefono');
             $table->string('direccion', 100);
-            $table->string('correo', 100);
+            $table->string('correo', 100)->nullable();
             $table->timestamps();
         });
     }

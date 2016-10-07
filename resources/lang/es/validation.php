@@ -91,6 +91,15 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'dni_ruc' => [
+            'dni_ruc' => 'El campo :attribute debe contener 8 u 11 elementos.',
+        ],
+        'rucdni' => [
+            'dni_ruc' => 'El campo :attribute debe contener 8 u 11 elementos.',
+        ],
+        'ruc_dni' => [
+            'dni_ruc' => 'El campo :attribute debe contener 8 u 11 elementos.',
+        ],
     ],
 
     /*
