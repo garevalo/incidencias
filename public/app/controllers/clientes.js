@@ -127,4 +127,36 @@ app.controller('ClientesController', function ($scope, $compile, $http, API_URL,
         $('#clientes-table').dataTable(options);
     }
 
+    $scope.delete = function(id){
+
+        /*if(confirm("¿Está seguro de eliminar este cliente" + id + " ?" )){
+            alert("cliente eliminado");
+        }*/
+        $( "#dialog-confirm" ).removeClass('hide').dialog({
+            resizable: false,
+            width: '320',
+            modal: true,
+            title: "",
+            title_html: true,
+            buttons: [
+                {
+                    html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Eliminar Cliente",
+                    "class" : "btn btn-danger btn-minier",
+                    click: function() {
+                        
+                        $( this ).dialog( "close" );
+                    }
+                }
+                ,
+                {
+                    html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancelar",
+                    "class" : "btn btn-minier",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+    }
+
 });

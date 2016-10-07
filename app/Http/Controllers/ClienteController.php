@@ -137,7 +137,7 @@ class ClienteController extends Controller
             })
             ->addColumn('edit',function($cliente){
                 return '<a href="javascript:void(0)" ng-click="modalCliente(2,'.$cliente->idcliente.')" class="blue"><i class="ace-icon fa fa-pencil bigger-130"></i></a>
-                        <a href="javascript:void(0)" ng-click="modalCliente(2,'.$cliente->idcliente.')" class="red"><i class="glyphicon glyphicon-trash"></i></a>';
+                        <a href="javascript:void(0)" ng-click="delete(2,'.$cliente->idcliente.')" class="red"><i class="glyphicon glyphicon-trash"></i></a>';
             })
             ->make(true);
     }
