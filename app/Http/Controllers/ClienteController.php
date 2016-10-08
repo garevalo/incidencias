@@ -71,6 +71,7 @@ class ClienteController extends Controller
             $Cliente->correo    = $request->correo;
             $Cliente->telefono   = $request->telefono;
             $Cliente->direccion   = $request->direccion;
+            $Cliente->estado_cliente = 1;
 
             return response()->json($Cliente->save());
         }
@@ -110,7 +111,7 @@ class ClienteController extends Controller
         $validator = Validator::make($request->all(), [
             'nombre'    => 'required|min:4|max:40|string',
             'dni_ruc'  => 'required|dni_ruc|numeric',
-            'correo'    => 'email|unique:clientes,correo',
+            'correo'    => 'email|unique:clientes,correo,'.$id.',idcliente',
             'telefono'   => 'required|digits_between:7,9|numeric',
             'direccion'  => 'required|min:4|max:60|string'
         ]);
@@ -131,7 +132,7 @@ class ClienteController extends Controller
 
     public function anyDataCliente(){
         //$datos = User::select([])->get();
-        return Datatables::of(Cliente::all())
+        return Datatables::of(Cliente::where('estado_cliente','=',1))
             ->addColumn('check',function($cliente){
                 return '<label class="pos-rel"><input type="checkbox" class="ace"><span class="lbl" id="'.$cliente->idcliente.'"></span></label>';
             })
@@ -160,10 +161,17 @@ class ClienteController extends Controller
         //
     }
 
+    public function bajacliente($id){
+        $Cliente = Cliente::find($id);
+        $Cliente->estado_cliente    = 0;
+        return response()->json($Cliente->save());
+    }
+
     public function getCliente($field='nombre',$value){
        //$value =  Input::get('term');
        //return Cliente::select('idcliente as id', 'nombre as value')->where($field,'like','%'.$value.'%')->get();
-       return Cliente::select('idcliente as id', 'nombre as value','dni_ruc','telefono','direccion')->where($field,'like','%'.$value.'%')->get();
+       return Cliente::select('idcliente as id', 'nombre as value','dni_ruc','telefono','direccion')->where($field,'like','%'.$value.'%')->where('estado_cliente','=',1)->get();
        // return $field.' '.$value;
     }
+
 }

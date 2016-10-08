@@ -127,7 +127,7 @@ app.controller('ClientesController', function ($scope, $compile, $http, API_URL,
         $('#clientes-table').dataTable(options);
     }
 
-    $scope.delete = function(id){
+    $scope.delete = function(v,idcliente){
 
         /*if(confirm("¿Está seguro de eliminar este cliente" + id + " ?" )){
             alert("cliente eliminado");
@@ -136,13 +136,29 @@ app.controller('ClientesController', function ($scope, $compile, $http, API_URL,
             resizable: false,
             width: '320',
             modal: true,
-            title: "",
+            title: "Dar de baja usuario",
             title_html: true,
             buttons: [
                 {
-                    html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Eliminar Cliente",
+                    html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Aceptar",
                     "class" : "btn btn-danger btn-minier",
                     click: function() {
+
+                        $http.get(API_URL + 'cliente/bajacliente/' + idcliente).success(function (data, status) {
+                            
+                            //table.ajax.reload();
+                            if(data===true){
+                                $.gritter.add({
+                                    title: 'Notificación',
+                                    text: '!El cliente fue dado de baja',
+                                    //sticky: true,
+                                    class_name: 'gritter-error'
+                                });
+                                var table = $('#clientes-table').DataTable();
+                                table.ajax.reload();
+                            }     
+
+                        });
                         
                         $( this ).dialog( "close" );
                     }

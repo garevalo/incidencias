@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('cliente/modal/{modal}/{id?}', 'ClienteController@modal');
         Route::get('cliente/getdata/{id?}', 'ClienteController@dataCliente');
         Route::get('cliente/getcliente/{field}/{value}', 'ClienteController@getCliente');
+        Route::get('cliente/bajacliente/{id?}','ClienteController@bajacliente');
         Route::resource('cliente', 'ClienteController');
 
 		Route::resource('usuario', 'UsuarioController');
@@ -40,6 +41,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('incidencia/reporte/procesaratendidoxtecnico', 'IncidenciaController@procesaratendidoxtecnico');
     Route::get('reporte/atendidosxtecnico', 'IncidenciaController@atendidosxtecnico');
 
+    Route::post('incidencia/reporte/procesareficiencia', 'IncidenciaController@procesareficiencia');
+    Route::get('reporte/eficiencia', 'IncidenciaController@eficiencia');
 
     Route::get('incidencia/getdata/{id?}', 'IncidenciaController@dataIncidencia');
     Route::get('incidencia/modal/{modal}/{id?}', 'IncidenciaController@modal');

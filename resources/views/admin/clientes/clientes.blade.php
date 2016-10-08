@@ -58,14 +58,15 @@
 </div>
 
 <div id="dialog-confirm" class="hide">
-
+	
 	<div class="space-6"></div>
 
 	<p class="bigger-110 bolder center grey">
 		<i class="ace-icon fa fa-hand-o-right blue bigger-120"></i>
-		¿Estás seguro de eliminar este cliente?
+		¿Estás seguro de dar de baja a este cliente?
 	</p>
 </div><!-- #dialog-confirm -->
+
 
 
 

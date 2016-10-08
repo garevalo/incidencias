@@ -115,6 +115,7 @@ class IncidenciaController extends Controller
                 $Cliente->dni_ruc = $request->ruc_dni;
                 $Cliente->telefono = $request->telefono;
                 $Cliente->direccion = $request->direccion;
+                $Cliente->estado_cliente = 1;
                 $Cliente->save();
                 $idcliente = $Cliente::select('idcliente')->orderBy('idcliente', 'desc')->take(1)->first();
                 $idcliente = $idcliente->idcliente;
@@ -208,14 +209,13 @@ class IncidenciaController extends Controller
             $Incidencia->estado       = $request->estado;
             if($request->estado==2) {
              $Incidencia->diagnostico = $request->diagnostico;
-             $Incidencia->fecha_curso   = date('Y-m-d');
+             $Incidencia->fecha_curso   = date('Y-m-d H:i:s');
             }
             if ($request->estado==3) {
                 $Incidencia->descripcion_tecnico = $request->descripcion;
-                $Incidencia->fecha_completa   = date('Y-m-d');
+                $Incidencia->fecha_completa   = date('Y-m-d H:i:s');
                 $Incidencia->precio_final = $request->preciofinal; 
             }
-            
             
             return response()->json($Incidencia->save());
         }
@@ -412,9 +412,38 @@ class IncidenciaController extends Controller
         return view('admin.incidencias.reportes.procesar_atendidos_tecnico',$data);
     }
 
+
+    public function eficiencia(){
+        $data['titulo'] = "Reporte Indicador eficiencia";
+        return view('admin.incidencias.reporte_eficiencia',$data);
+
+    }
+
+    public function procesareficiencia(Request $request){
+        
+        $fechaini =  $this->fecha($request->fechaini);
+        $fechafin =  $this->fecha($request->fechafin);
+
+        $data['incidencias'] = Incidencia::select(DB::raw('count(incidencia.idincidencia) cantidad,sum(incidencia.precio_final) precio,TIMESTAMPDIFF(HOUR,date(cast(incidencia.created_at as Date)),incidencia.fecha_completa ) horas,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y") fecha'))
+            ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
+            ->join('users', 'users.id', '=', 'incidencia.idtecnico')
+            ->groupBy(DB::raw('day(fecha_completa)'))
+            ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
+            ->where('estado','3')
+            ->get();
+
+        $data['cantidade'] = $request->registroe;   
+        $data['costoe'] = $request->costoe;
+        $data['tiempoe'] = $request->tiempoe;
+
+        return view('admin.incidencias.reportes.procesar_eficiencia',$data);    
+    }
+
     private function fecha($string){
         $fecha_array =  explode('/',$string);
         return $fecha_array[2].'-'.$fecha_array[1].'-'.$fecha_array[0];
     }
+
+
 
 }
