@@ -1,3 +1,5 @@
+<?php if(count($incidencias)>0){ ?>
+
 <table class="table table-bordered table-condensed table-striped">
 	<thead class="text-primary">
 		<th class="text-primary" style="text-align: center;">Cantidad Registros</th>
@@ -33,10 +35,10 @@
 	
 </table>
 <br><br><br><br>
-<div class="col-lg-12">
-	<table class="table table-bordered table-condensed">
+
+<table class="table table-bordered table-condensed" style="text-align: center;">
 	<thead>
-		<th>Eficiencia</th>
+		<th style="text-align: center;">Eficiencia</th>
 	</thead>
 	<tr>
 		<td>
@@ -45,11 +47,12 @@
 	</tr>
 	<tr>
 		<td>
-			(<?php /* =$cantidadtotal?>/<?= $preciototal?>*<?= $horastotal ?>) / (<?=$cantidade?>/<?=$costoe ?>*<?= $tiempoe?>) = <?php echo ($cantidadtotal / ($preciototal * $horastotal )) /   ($cantidade / ($costoe * $tiempoe )) */ ?>
+			(<?=$cantidadtotal?>/<?= $preciototal?>*<?= $horastotal ?>) / (<?=$cantidade?>/<?=$costoe ?>*<?= $tiempoe?>) = <?php echo round(($cantidadtotal / ($preciototal * $horastotal )) /   ($cantidade / ($costoe * $tiempoe )),4) ?>
 		</td>
 	</tr>
 	<tr>
-		<td class="text-info">Dónde: R= Registro de equipo de cómputo <br> C = Costo<br> T= Tiempo<br> A=Alcanzado<br> E=Esperado.</td>
+		<td class="text-info"><strong>Dónde:</strong><br>R= Registro de equipo de cómputo <br> C = Costo<br> T= Tiempo<br> A=Alcanzado<br> E=Esperado.</td>
 	</tr>
 </table>
-</div>
+
+<?php } else { echo "<br><br><div class='alert alert-danger text-center'><h2 >¡No existen datos en la fecha seleccionada!</h2></div>" ;} ?>

@@ -48,7 +48,7 @@
                         <div class="widget-body">
                             <div class="widget-main no-padding">
 
-                                <div id="reporte" style="height: 400px"></div>
+                                <div id="reporte" style="min-height: 400px"></div>
                             </div>
                         </div>
                     </div>

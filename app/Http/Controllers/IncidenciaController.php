@@ -424,7 +424,7 @@ class IncidenciaController extends Controller
         $fechaini =  $this->fecha($request->fechaini);
         $fechafin =  $this->fecha($request->fechafin);
 
-        $data['incidencias'] = Incidencia::select(DB::raw('count(incidencia.idincidencia) cantidad,sum(incidencia.precio_final) precio,TIMESTAMPDIFF(HOUR,date(cast(incidencia.created_at as Date)),incidencia.fecha_completa ) horas,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y") fecha'))
+        $data['incidencias'] = Incidencia::select(DB::raw('count(incidencia.idincidencia) cantidad,sum(incidencia.precio_final) precio,((TIMESTAMPDIFF(SECOND,date(cast(incidencia.created_at as Date)),incidencia.fecha_completa ))/3600)horas,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y") fecha'))
             ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
             ->join('users', 'users.id', '=', 'incidencia.idtecnico')
             ->groupBy(DB::raw('day(fecha_completa)'))

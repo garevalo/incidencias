@@ -66,7 +66,7 @@
                         <div class="widget-body">
                             <div class="widget-main">
 
-                                <div id="reporte" style="height: 400px"></div>
+                                <div id="reporte" style="min-height: 400px"></div>
                             </div>
                         </div>
                     </div>
