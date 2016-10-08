@@ -45,7 +45,7 @@
 	</tr>
 	<tr>
 		<td>
-			(<? /*=$cantidadtotal?>/<?= $preciototal?>*<?= $horastotal ?>) / (<?=$cantidade?>/<?=$costoe ?>*<?= $tiempoe?>) = <?php echo ($cantidadtotal / ($preciototal * $horastotal )) /   ($cantidade / ($costoe * $tiempoe )) */ ?>
+			(<?php /* =$cantidadtotal?>/<?= $preciototal?>*<?= $horastotal ?>) / (<?=$cantidade?>/<?=$costoe ?>*<?= $tiempoe?>) = <?php echo ($cantidadtotal / ($preciototal * $horastotal )) /   ($cantidade / ($costoe * $tiempoe )) */ ?>
 		</td>
 	</tr>
 	<tr>
