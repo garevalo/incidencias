@@ -34,7 +34,7 @@
 	</tbody>
 	
 </table>
-<br><br><br><br>
+<br>
 
 <table class="table table-bordered table-condensed" style="text-align: center;">
 	<thead>
