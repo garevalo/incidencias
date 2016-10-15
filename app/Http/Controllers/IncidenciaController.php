@@ -272,9 +272,6 @@ class IncidenciaController extends Controller
                 }
                 return $estado;
             })
-            ->addColumn('fecha_creacion', function ($incidencia) {
-                return date("Y-m-d H:m:s ", strtotime($incidencia->fecha_creacion));
-            })
             ->addColumn('edit', function ($incidencia) {
                 return '<a href="javascript:void(0)" ng-click="modalIncidencia(2,' . $incidencia->idincidencia . ')" class="green"><i class="glyphicon glyphicon-search"></i></a>';
             })

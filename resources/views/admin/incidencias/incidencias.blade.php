@@ -83,8 +83,8 @@
 				{ data: 'tecnico',  name: 'name' },
 				{ data: 'estado',  name: 'estado' },
 				{ data: 'prioridad',  name: 'prioridad' },
-				{ data: 'fecha_creacion',  name: 'fecha_creacion' },
-				{ data: 'fecha_completa',  name: 'fecha_completa' },
+				{ data: 'fecha_creacion',  name: 'fecha_creacion',searchable:false },
+				{ data: 'fecha_completa',  name: 'fecha_completa',searchable:false },
 				{ data: 'edit',   name: 'edit',orderable:false,searchable:false }
 			];
 			return factory;

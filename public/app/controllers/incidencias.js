@@ -37,9 +37,10 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
                 $.gritter.add({
                        title: 'Notificación',
                         text: '¡Se actualizó Atención correctamente!',
-                        sticky: true,
+                        time: 1000,
                         class_name: 'gritter-info'
                 });
+
                 //alert('Se Registro correctamente');
                 $('#modalEdit').modal('hide');
                 var table = $('#data-table').DataTable();
