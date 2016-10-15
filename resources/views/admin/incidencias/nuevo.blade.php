@@ -32,7 +32,7 @@
 			</div>
 
 			<div class="widget-body ">
-				<form class="form-horizontal" method="POST" action="{{url('incidencia')}}">
+				<form class="form-horizontal" method="POST" action="{{url('incidencia')}}" id="frm">
 				{{ csrf_field()  }}
 					<div class="widget-main">
 						
@@ -123,7 +123,7 @@
 													<label for="form-field-select-1">Condición al recepcionar</label>
 													<div class="radio-inline">
 														<label>
-															<input name="condicion" type="radio" class="ace" value="inoperativo">
+															<input name="condicion" type="radio" class="ace" value="inoperativo" required="">
 															<span class="lbl"> Inoperativo</span>
 														</label>
 													</div>
@@ -223,7 +223,7 @@
 
 						<div class="clearfix form-actions">
 							<div class="col-md-offset-3 col-md-9">
-								<button class="btn btn-primary" type="submit">
+								<button class="btn btn-primary" type="submit" id="btn-guardar">
 									<i class="ace-icon fa fa-check bigger-110"></i>
 									Crear Atención
 								</button>
@@ -249,6 +249,18 @@
 @section("fscript")
 	@parent
 	<script>
+		$("#btn-guardar").click(function(event){
+			 if( contador_input('#frm') <= 8){
+				$("#btn-guardar").attr("disabled","disabled");
+			 	$("#frm").submit();
+			 }else{
+			 	alert(contador_input('#frm'));
+			 	event.preventDefault();
+			 }
+
+
+			
+		});
 
 		$( "#cliente" ).autocomplete({
 			source: function( request, response ) {
@@ -293,4 +305,5 @@
 	<script src="{{ asset("js/jquery.dataTables.bootstrap.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.gritter.min.js") }}"></script>
 	<script src="{{ asset("app/controllers/incidencias.js") }}"></script>
+	<script src="{{ asset("myjs/funciones.js") }}"></script>
 @endsection

@@ -44,6 +44,8 @@
 					<th>Técnico</th>
 					<th>Estado</th>
 					<th>Prioridad</th>
+					<th>F. Creación</th>
+					<th>F. Completada</th>
 					<th style="text-align: center;"><a class="btn btn-success btn-sm"href="{{url('incidencia/create')}}">Nueva Atención</a></th>
 				</tr>
 			</thead>
@@ -81,6 +83,8 @@
 				{ data: 'tecnico',  name: 'name' },
 				{ data: 'estado',  name: 'estado' },
 				{ data: 'prioridad',  name: 'prioridad' },
+				{ data: 'fecha_creacion',  name: 'fecha_creacion' },
+				{ data: 'fecha_completa',  name: 'fecha_completa' },
 				{ data: 'edit',   name: 'edit',orderable:false,searchable:false }
 			];
 			return factory;

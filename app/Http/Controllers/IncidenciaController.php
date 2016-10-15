@@ -240,7 +240,8 @@ class IncidenciaController extends Controller
     public function anyData()
     {
         //$datos = User::select([])->get();
-        return Datatables::of(Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
+        return Datatables::of(Incidencia::select(DB::raw('*, cast(incidencia.created_at as datetime) fecha_creacion'))
+            ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
             ->join('users', 'users.id', '=', 'incidencia.idtecnico'))
             ->addColumn('check', function ($incidencia) {
                 return '<label class="pos-rel"><input type="checkbox" class="ace"><span class="lbl" id="' . $incidencia->idincidencia . '"></span></label>';
@@ -270,6 +271,9 @@ class IncidenciaController extends Controller
                     $estado = '<span class="label label-danger">Alta</span>';
                 }
                 return $estado;
+            })
+            ->addColumn('fecha_creacion', function ($incidencia) {
+                return date("Y-m-d H:m:s ", strtotime($incidencia->fecha_creacion));
             })
             ->addColumn('edit', function ($incidencia) {
                 return '<a href="javascript:void(0)" ng-click="modalIncidencia(2,' . $incidencia->idincidencia . ')" class="green"><i class="glyphicon glyphicon-search"></i></a>';
@@ -438,6 +442,33 @@ class IncidenciaController extends Controller
 
         return view('admin.incidencias.reportes.procesar_eficiencia',$data);    
     }
+
+
+
+    public function eficacia(){
+        $data['titulo'] = "Reporte Indicador eficacia";
+        return view('admin.incidencias.reporte_eficacia',$data);
+
+    }
+
+    public function procesareficacia(Request $request){
+        
+        $fechaini =  $this->fecha($request->fechaini);
+        $fechafin =  $this->fecha($request->fechafin);
+
+        $data['incidencias'] = Incidencia::select(DB::raw('count(incidencia.idincidencia) cantidad,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y") fecha'))
+            ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
+            ->groupBy(DB::raw('day(fecha_completa)'))
+            ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
+            ->where('estado','3')
+            ->get();
+
+        $data['cantidade'] = $request->registroe;   
+
+        return view('admin.incidencias.reportes.procesar_eficacia',$data);    
+    }
+
+
 
     private function fecha($string){
         $fecha_array =  explode('/',$string);

@@ -55,6 +55,7 @@ function contador_input(form) {
     $(form).find(':input').each(function() {
         var type = this.type;
         var tag = this.tagName.toLowerCase();
+        console.log(tag);
         if (type === 'text' || type === 'password' || tag === 'textarea' || type === 'date' || tag === 'select' || type === 'number')
         {
             if (this.value === '') {

@@ -92,6 +92,13 @@
 					</a>
 					<b class="arrow"></b>
 				</li>
+				<li class="<?= ($submenu==4.4)?'active':''?>">
+					<a href="{{url('reporte/eficacia')}}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Reporte Eficacia
+					</a>
+					<b class="arrow"></b>
+				</li>
 			</ul>
 
 		</li>
