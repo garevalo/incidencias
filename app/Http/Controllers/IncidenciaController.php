@@ -240,7 +240,7 @@ class IncidenciaController extends Controller
     public function anyData()
     {
         //$datos = User::select([])->get();
-        return Datatables::of(Incidencia::select(DB::raw('*, cast(incidencia.created_at as datetime) fecha_creacion'))
+        return Datatables::of(Incidencia::select(DB::raw('*, DATE_FORMAT(cast(incidencia.created_at as datetime),"%d-%m-%Y %H:%i:%s") fecha_creacion,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y %H:%i:%s") fecha_completa' ))
             ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
             ->join('users', 'users.id', '=', 'incidencia.idtecnico'))
             ->addColumn('check', function ($incidencia) {
