@@ -64,6 +64,7 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
             $http.get(API_URL + 'incidencia/getdata/' + idincidencia).success(function (data, status) {
                 console.log(data);
                 $scope.incidencia = data[0];
+                var allincidencias = $scope.incidencia;
                 $scope.incidenciacomponente = data;
                 $scope.selectincidencia = {idestado: data[0].estado };
                 if(data[0].prioridad == 1){
@@ -73,6 +74,13 @@ app.controller('IncidenciasController', function ($scope, $compile, $http, API_U
                 }else{
                     $scope.nombreprioridad = 'Alta' ;
                 }
+
+                if(allincidencias.precio_final=='' || allincidencias.precio_final<='0.00'){
+                    $scope.preciofinal = allincidencias.precio_estimado;
+                }else{
+                    $scope.preciofinal = allincidencias.precio_final;
+                }
+                console.log(allincidencias);
 
             });
 

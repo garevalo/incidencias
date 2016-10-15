@@ -4,7 +4,7 @@
 
 @section("header")
 	@parent
-
+	<link rel="stylesheet" href="{{ asset("css/jquery.gritter.min.css") }}" />
 @endsection
 
 
@@ -14,7 +14,7 @@
 		<div class="pull-right tableTools-container"></div>
 	</div>
 	<div class="table-header">
-		Incidencias Asignadas
+		Lista de Atención
 	</div>
 
 	<!-- div.table-responsive -->
@@ -65,7 +65,7 @@
 
 @section("fscript")
 	@parent
-
+	<script src="{{ asset("js/jquery-ui.custom.min.js") }}"></script>
 	<script>
 		app.factory('IncidenciasFactory',function(){
 			var factory={};
@@ -87,10 +87,11 @@
 		});
 	</script>
 
-	<script src="{{ asset("js/jquery-ui.custom.min.js") }}"></script>
+	
 	<script src="{{ asset("js/jquery.dataTables.min.js") }}"></script>
 	<script src="{{ asset("js/jquery.dataTables.bootstrap.min.js") }}"></script>
 
 	<script src="{{ asset("app/controllers/incidencias.js") }}"></script>
+	<script src="{{ asset("js/jquery.gritter.min.js") }}"></script>
 
 @endsection

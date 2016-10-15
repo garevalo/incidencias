@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                     <label for="inputEmail3" class="control-label">Precio Final</label>
-                                    <input type="text" name="preciofinal" ng-model="incidencia.precio_estimado" class="form-control" ng-disabled="ispreciofinal" >
+                                    <input type="text" name="preciofinal" ng-model="preciofinal" class="form-control" ng-disabled="ispreciofinal" >
                                     <span class="label label-warning label-white middle" ng-bind="error.preciofinal"></span>
                                 </div>
                             </div>
