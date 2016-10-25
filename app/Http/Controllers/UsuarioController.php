@@ -65,7 +65,7 @@ class UsuarioController extends Controller
             'correo'    => 'required|email|unique:users,email',
             'usuario'   => 'required|min:4|max:40|alpha_num|unique:users,usuario',
             'password'  => 'required|min:6|max:40|alpha_num',
-            'rol'       => 'required|digits_between:1,2|numeric',
+            'rol'       => 'required|digits_between:1,2|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -81,6 +81,7 @@ class UsuarioController extends Controller
             $User->usuario  = $request->usuario;
             $User->password = bcrypt($request->password);
             $User->idrol    = $request->rol;
+            $User->estado   = 1;
 
             return response()->json($User->save());
         }  
@@ -180,6 +181,7 @@ class UsuarioController extends Controller
             'usuario'   => 'required|min:4|max:40|alpha_num|unique:users,usuario,'.$id,
             'password'  => 'min:6|max:40|alpha_num',
             'rol'       => 'required|digits_between:1,2|numeric',
+            'estado'    => 'required|digits_between:0,1|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -196,6 +198,7 @@ class UsuarioController extends Controller
               $User->password = bcrypt($request->password);  
             }
             $User->idrol    = $request->rol;
+            $User->estado   = $request->estado;
             return response()->json($User->save());
         } 
     }
@@ -229,6 +232,15 @@ class UsuarioController extends Controller
                 $rol = "Recepcionista";
             }
             return $rol;
+        })
+        ->addColumn('estado',function($user){
+            if($user->estado==1){
+                $estado = '<span class="label label-info">Activo</span>';
+            }
+            elseif ($user->estado==0) {
+                $estado = '<span class="label label-warning">Inactivo</span>';
+            }
+            return $estado;
         })
         /*->addColumn('avatar',function($user){
             return '<img src="'.$user->image.'" width="40">';

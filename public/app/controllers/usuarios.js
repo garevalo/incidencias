@@ -102,6 +102,7 @@ app.controller('UsuariosController', function ($scope, $compile, $http, API_URL,
         $scope.errorUsuario   = '';
         $scope.errorPassword  = '';
         $scope.errorRol       = '';
+        $scope.errorEstado    = '';
         //console.log($.param($scope.usuario));
         var datos = $( "#frmusuario" ).serialize();
         //console.log(str);
@@ -135,6 +136,7 @@ app.controller('UsuariosController', function ($scope, $compile, $http, API_URL,
                 $scope.errorUsuario     = response.usuario;
                 $scope.errorPassword    = response.password;
                 $scope.errorRol         = response.rol;
+                $scope.errorEstado      = response.estado;
             }
         }).error(function (response) {
             alert('Ha Ocurrido un error');

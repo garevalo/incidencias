@@ -51,7 +51,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        $data['tecnicos'] = User::where('idrol', 2)->get();
+        $data['tecnicos'] = User::where('idrol', 2)->where('estado',1)->get();
         //print_r($data['tecnicos']);
         $data['componentes'] = Componente::all();
         $data['titulo'] = "Registrar Incidencia";
@@ -463,6 +463,32 @@ class IncidenciaController extends Controller
         $data['cantidade'] = $request->registroe;   
 
         return view('admin.incidencias.reportes.procesar_eficacia',$data);    
+    }
+
+    public function reportetecnico(){
+        $data['titulo'] = "Reporte detallado por técnico";
+        return view('admin.incidencias.reporte_tecnico',$data);
+
+    }
+
+    public function procesartecnico(Request $request){
+        
+        $fechaini =  $this->fecha($request->fechaini);
+        $fechafin =  $this->fecha($request->fechafin);
+
+        $idtecnico =  $this->fecha($request->fechafin);
+
+        $data['incidencias'] = Incidencia::select(DB::raw('count(incidencia.idincidencia) cantidad,sum(incidencia.precio_final) precio,((TIMESTAMPDIFF(SECOND,date(cast(incidencia.created_at as Date)),incidencia.fecha_completa ))/3600)horas,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y") fecha'))
+            ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
+            ->join('users', 'users.id', '=', 'incidencia.idtecnico')
+            ->groupBy(DB::raw('day(fecha_completa)'))
+            ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
+            ->where('estado','3')
+            ->get();
+
+        $data['cantidade'] = $request->registroe;   
+
+        return view('admin.incidencias.reportes.procesar_tecnico',$data);    
     }
 
 

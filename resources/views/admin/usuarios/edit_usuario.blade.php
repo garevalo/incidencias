@@ -60,6 +60,18 @@
                 <span class="label label-warning label-white middle" ng-bind="errorRol"></span>
             </div>
         </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-3 control-label">Estado</label>
+            <div class="col-sm-9">
+                <select name="estado" class="form-control">
+                    <option value="">Seleccione Estado</option>
+                    <option value="1" <?= ( $user->estado==1 )?'selected=""':''?>>Activo</option>
+                    <option value="0" <?= ( $user->estado==0 )?'selected=""':''?>>Inactivo</option>
+                </select>
+
+                <span class="label label-warning label-white middle" ng-bind="errorEstado"></span>
+            </div>
+        </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary" id="btn-save" ng-disabled="frmusuario.$invalid">Guardar</button>
         </div>

@@ -19,7 +19,8 @@ class UsersTableSeeder extends Seeder
             'email' 	=> 'admin@gmail.com',
             'image'     => '/avatars/profile-pic.jpg',
             'password'  => bcrypt('secret'),
-            'idrol'		=> '1'
+            'idrol'		=> '1',
+            'estado'    => '1'
         ]);
 
         DB::table('users')->insert([
@@ -29,7 +30,8 @@ class UsersTableSeeder extends Seeder
             'email' 	=> 'tecnico@gmail.com',
             'image'     => '/avatars/profile-pic.jpg',
             'password'  => bcrypt('secret'),
-            'idrol'		=> '2'
+            'idrol'		=> '2',
+            'estado'    => '1'
         ]);
 
         DB::table('users')->insert([
@@ -39,7 +41,8 @@ class UsersTableSeeder extends Seeder
             'email' 	=> 'tecnico2@gmail.com',
             'image'     => '/avatars/profile-pic.jpg',
             'password'  => bcrypt('secret'),
-            'idrol'		=> '2'
+            'idrol'		=> '2',
+            'estado'    => '1'
         ]);
 
         DB::table('users')->insert([
@@ -49,7 +52,8 @@ class UsersTableSeeder extends Seeder
             'email'     => 'recepcionista@gmail.com',
             'image'     => '/avatars/profile-pic.jpg',
             'password'  => bcrypt('secret'),
-            'idrol'     => '3'
+            'idrol'     => '3',
+            'estado'    => '1'
         ]);
     }
 }

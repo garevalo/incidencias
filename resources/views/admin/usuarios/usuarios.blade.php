@@ -41,6 +41,7 @@
 					<th>Usuario</th>
 					<th>Correo</th>
 					<th>Rol</th>
+					<th>Estado</th>
 					<?php /*<th>Imagen</th>*/?>
 					<th style="text-align: center;"><button class="btn btn-success btn-sm" ng-click="modalUser('new')">Nuevo Usuario</button></th>
 				</tr>
@@ -72,13 +73,14 @@
 		 factory.ajax='{{ route('usuariodata') }}';
 		 factory.idioma='{{ asset('js/Spanish.json') }}';
 		 factory.columns=[
-              { data: 'check',  name: 'check',orderable:false,searchable:false },
-              { data: 'name',   name: 'name' },
-              { data: 'apellido', name: 'apellido' },
-              { data: 'usuario',  name: 'usuario' },
-              { data: 'email',  name: 'email' },
-              { data: 'rol',    name: 'rol' },
-              { data: 'edit',   name: 'edit',orderable:false,searchable:false }
+              { data: 'check',   name: 'check',orderable:false,searchable:false },
+              { data: 'name',    name: 'name' },
+              { data: 'apellido',name: 'apellido' },
+              { data: 'usuario', name: 'usuario' },
+              { data: 'email',   name: 'email' },
+              { data: 'rol',     name: 'rol' },
+              { data: 'estado',  name: 'estado',orderable:false,searchable:false },
+              { data: 'edit',    name: 'edit',orderable:false,searchable:false }
           ];
 	   return factory;
 
