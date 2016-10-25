@@ -85,13 +85,13 @@
 					</a>
 					<b class="arrow"></b>
 				</li>
-				<li class="<?= ($submenu==4.4)?'active':''?>">
+				<?php /*<li class="<?= ($submenu==4.4)?'active':''?>">
 					<a href="{{url('reporte/tecnico')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Reporte detalle tecnico
 					</a>
 					<b class="arrow"></b>
-				</li>
+				</li> */ ?>
 				<li class="<?= ($submenu==4.4)?'active':''?>">
 					<a href="{{url('reporte/eficiencia')}}">
 						<i class="menu-icon fa fa-caret-right"></i>
