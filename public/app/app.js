@@ -1,7 +1,7 @@
 var app = angular.module('appincidencia', [],function($interpolateProvider){
 	$interpolateProvider.startSymbol('<%');
 	$interpolateProvider.endSymbol('%>');
-}).constant('API_URL', 'http://incidencias.app/');
+}).constant('API_URL', 'http://52.43.19.105/');
 
 app.directive('calendar', function () {
     return {
