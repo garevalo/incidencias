@@ -33,4 +33,4 @@
 <![endif]-->
 
 <script src="{{ asset("app/lib/angular.min.js") }}"></script>
-<script src="{{ asset("app/app.js") }}"></script>
+<script src="{{ asset("app/app.js?v1") }}"></script>
