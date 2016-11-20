@@ -1,6 +1,6 @@
 @extends("admin.template.main")
 
-@section("title","Reportes por mes")
+@section("title","Grado de cumplimiento")
 
 @section("header")
     @parent
@@ -14,7 +14,7 @@
             <form name="frm" id="frm" action="{{url('incidencia/reporte/procesareficiencia')}}">
                 {{ csrf_field()  }}
                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-
+                    <?php /*    
                 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label for="" class="control-label">Registro Esperado</label>
                         
@@ -30,7 +30,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label for="" class="control-label">Tiempo Esperado</label>
                         <input type="text" name="tiempoe"  class="input-sm form-control" required >
-                    </div>
+                    </div> */ ?>
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label for="inputEmail3" class="control-label">Fecha Inicio</label>

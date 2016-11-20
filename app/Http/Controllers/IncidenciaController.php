@@ -240,7 +240,18 @@ class IncidenciaController extends Controller
     public function anyData()
     {
         //$datos = User::select([])->get();
-        return Datatables::of(Incidencia::select(DB::raw('*, DATE_FORMAT(cast(incidencia.created_at as datetime),"%d-%m-%Y %H:%i:%s") fecha_creacion,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y %H:%i:%s") fecha_completa' ))
+        return Datatables::of(Incidencia::select(DB::raw('incidencia.idincidencia, 
+            incidencia.idcliente,
+            incidencia.marca,
+            incidencia.modelo,
+            incidencia.serie,
+            incidencia.prioridad,
+            incidencia.estado,
+            clientes.nombre,
+            users.name,
+            users.apellido,
+            DATE_FORMAT(cast(incidencia.created_at as datetime),"%d-%m-%Y %H:%i:%s") fecha_creacion,
+            DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y %H:%i:%s") fecha_completa'))
             ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
             ->join('users', 'users.id', '=', 'incidencia.idtecnico'))
             ->addColumn('check', function ($incidencia) {
@@ -253,6 +264,7 @@ class IncidenciaController extends Controller
                 return $incidencia->name . ' ' . $incidencia->apellido;
             })
             ->addColumn('estado', function ($incidencia) {
+                $estado = '';
                 if ($incidencia->estado == 1) {
                     $estado = '<span class="label label-info">Abierta</span>';
                 } elseif ($incidencia->estado == 2) {
@@ -383,7 +395,7 @@ class IncidenciaController extends Controller
         $data['incidencias'] = Incidencia::select(DB::raw('count(idincidencia) cantidad,concat(day(fecha_completa),"/",month(fecha_completa)) dia'))
             ->groupBy(DB::raw('day(fecha_completa)'))
             ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
-            ->where('estado','3')
+            ->where('incidencia.estado','3')
             ->get();
         $data['tipo'] = 'atendidos';
         return view('admin.incidencias.reportes.procesar_registrados',$data);
@@ -406,7 +418,7 @@ class IncidenciaController extends Controller
             ->join('users', 'users.id', '=', 'incidencia.idtecnico')
             ->groupBy('incidencia.idtecnico')
             ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
-            ->where('estado','3')
+            ->where('incidencia.estado','3')
             ->get();
         $data['tipo'] = 'atendidos por técnico';
         //print_r($data['incidencias']);
@@ -415,7 +427,7 @@ class IncidenciaController extends Controller
 
 
     public function eficiencia(){
-        $data['titulo'] = "Reporte Indicador eficiencia";
+        $data['titulo'] = "Grado de cumplimiento";
         return view('admin.incidencias.reporte_eficiencia',$data);
 
     }
@@ -425,12 +437,13 @@ class IncidenciaController extends Controller
         $fechaini =  $this->fecha($request->fechaini);
         $fechafin =  $this->fecha($request->fechafin);
 
-        $data['incidencias'] = Incidencia::select(DB::raw('count(incidencia.idincidencia) cantidad,sum(incidencia.precio_final) precio,((TIMESTAMPDIFF(SECOND,date(cast(incidencia.created_at as Date)),incidencia.fecha_completa ))/3600)horas,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y") fecha'))
+        $data['incidencias'] = Incidencia::select(
+                                                DB::raw('incidencia.idincidencia,DATE_FORMAT(cast(incidencia.created_at as DATE),"%d-%m-%Y") fecha_creacion, 
+                                                        DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y") fecha_completa')
+                                                )
             ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
             ->join('users', 'users.id', '=', 'incidencia.idtecnico')
-            ->groupBy(DB::raw('day(fecha_completa)'))
-            ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
-            ->where('estado','3')
+            ->whereBetween(DB::raw('cast(incidencia.created_at as DATE)'), [$fechaini, $fechafin])
             ->get();
 
         $data['cantidade'] = $request->registroe;   
@@ -453,11 +466,13 @@ class IncidenciaController extends Controller
         $fechaini =  $this->fecha($request->fechaini);
         $fechafin =  $this->fecha($request->fechafin);
 
-        $data['incidencias'] = Incidencia::select(DB::raw('count(incidencia.idincidencia) cantidad,DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y") fecha'))
+        $data['incidencias'] = Incidencia::select(DB::raw(' incidencia.idincidencia,
+                                                           count(incidencia.idincidencia) cantidad,
+                                                            DATE_FORMAT(cast(incidencia.created_at as DATE),"%d-%m-%Y") fecha'))
             ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
-            ->groupBy(DB::raw('day(fecha_completa)'))
-            ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
-            ->where('estado','3')
+            ->groupBy(DB::raw('day(cast(incidencia.created_at as DATE))'))
+            ->whereBetween(DB::raw('cast(incidencia.created_at as DATE)'), [$fechaini, $fechafin])
+            //->where('incidencia.estado','1')
             ->get();
 
         $data['cantidade'] = $request->registroe;   
@@ -483,7 +498,7 @@ class IncidenciaController extends Controller
             ->join('users', 'users.id', '=', 'incidencia.idtecnico')
             ->groupBy(DB::raw('day(fecha_completa)'))
             ->whereBetween(DB::raw('date(fecha_completa)'), [$fechaini, $fechafin])
-            ->where('estado','3')
+            ->where('incidencia.estado','3')
             ->get();
 
         $data['cantidade'] = $request->registroe;   
