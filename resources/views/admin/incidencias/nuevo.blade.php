@@ -35,7 +35,6 @@
 				<form class="form-horizontal" method="POST" action="{{url('incidencia')}}" id="frm">
 				{{ csrf_field()  }}
 					<div class="widget-main">
-						
 
 						<div class="row">
 							<div class="col-xs-12 col-lg-12">
@@ -50,24 +49,24 @@
 													<label for="inputInfo">Cliente</label>
 													<input type="text" name="cliente" id="cliente"  class="form-control input-sm" value="{{ old('cliente') }}" required="">
 													<input type="hidden" id="idcliente" name="idcliente" value="">
-													<div id=" " class="help-block orange2">{{$errors->first('cliente')}}</div>
+													<div id="errornombre" class="help-block orange2">{{$errors->first('cliente')}}</div>
 												</div>
 												<div class="col-lg-3">
 													<label for="form-field-select-3">Dni o Ruc</label>
-													<input type="text" name="ruc_dni" id="ruc_dni" class="form-control input-sm" value="{{old('ruc_dni')}}">
-													<div id=" " class="help-block orange2">{{$errors->first('ruc_dni')}}</div>
+													<input type="text" name="ruc_dni" id="ruc_dni" class="form-control input-sm" required="" value="{{old('ruc_dni')}}">
+													<div id="errordniruc" class="help-block orange2">{{$errors->first('ruc_dni')}}</div>
 												</div>
 												<div class="col-lg-3">
 													<label for="form-field-select-2">Teléfono</label>
-													<input type="text" name="telefono" id="telefono" class="form-control input-sm" value="{{old('telefono')}}">
-													<div id=" " class="help-block orange2">{{$errors->first('telefono')}}</div>
+													<input type="text" name="telefono" id="telefono" class="form-control input-sm" required="" value="{{old('telefono')}}">
+													<div id="errortelefono" class="help-block orange2">{{$errors->first('telefono')}}</div>
 												</div>
 											</div>
 											<div class="form-group has-info">
 												<div class="col-lg-6">
 													<label for="inputInfo">Dirección</label>
-													<input type="text" name="direccion" id="direccion" class="form-control input-sm" value="{{old('direccion')}}">
-													<div id=" " class="help-block orange2">{{$errors->first('direccion')}}</div>
+													<input type="text" name="direccion" id="direccion" class="form-control input-sm" required="" value="{{old('direccion')}}">
+													<div id="errordireccion" class="help-block orange2">{{$errors->first('direccion')}}</div>
 												</div>
 											</div>
 										</div>
@@ -87,7 +86,7 @@
 											<div class="form-group has-info">
 												<div class="col-lg-4">
 													<label for="form-field-select-1">Marca</label>
-													<input type="text" name="marca" id="form-field-select-1" class="form-control input-sm" value="{{old('marca')}}" required="">
+													<input type="text" name="marca" id="marca" class="form-control input-sm" value="{{old('marca')}}" required="">
 													<div id=" " class="help-block orange2">{{$errors->first('marca')}}</div>
 												</div>
 												<div class="col-lg-4">
@@ -189,7 +188,7 @@
 											<div class="col-lg-6">
 												<label for="form-field-select-1">Asignar Técnico</label>
 												<select id="inputInfo" class="form-control input-sm" name="tecnico" required="">
-													<option value="">Selecciones Técnico</option>
+													<option value="">Selecciones Técnico</option>{{old('$tecnico->id')}}
 													@foreach($tecnicos as $tecnico)
 														<option value="{{$tecnico->id}}">{{$tecnico->name.' '.$tecnico->apellido}}</option>
 													@endforeach
@@ -251,11 +250,12 @@
 	<script>
 		$("#btn-guardar").click(function(event){
 			 if( contador_input('#frm') <= 8){
-				$("#btn-guardar").attr("disabled","disabled");
-			 	$("#frm").submit();
+				//$("#btn-guardar").attr("disabled","disabled");
+			 	//$("#frm").submit();
+			 	registrar_ajax('frm', 8);
 			 }else{
-			 	alert(contador_input('#frm'));
-			 	event.preventDefault();
+			 	console.log(contador_input('#frm'));
+			 	//event.preventDefault();
 			 }
 
 
@@ -291,6 +291,8 @@
 				$("#ruc_dni").attr('disabled','disabled');
 				$("#telefono").attr('disabled','disabled');
 				$("#direccion").attr('disabled','disabled');
+
+				$("#marca").focus();
 			}
 		} );
 

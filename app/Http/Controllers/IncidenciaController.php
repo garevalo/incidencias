@@ -84,7 +84,7 @@ class IncidenciaController extends Controller
                 'descripcion_servicio' => 'required|min:2|max:40|string',
                 'tipo_equipo' => 'required|min:2|max:20|alpha',
                 'condicion' => 'required|min:2|max:20|alpha',
-                'componente' => 'required',
+                //'componente' => 'required',
                 'tecnico' => 'required|numeric',
                 'prioridad' => 'required|digits_between:1,2|numeric',
                 'precioestimado' => 'required|numeric');
@@ -96,7 +96,7 @@ class IncidenciaController extends Controller
                 'descripcion_servicio' => 'required|min:2|max:40|string',
                 'tipo_equipo' => 'required|min:2|max:20|alpha',
                 'condicion' => 'required|min:2|max:20|alpha',
-                'componente' => 'required',
+                //'componente' => 'required',
                 'tecnico' => 'required|numeric',
                 'prioridad' => 'required|digits_between:1,2|numeric',
                 'precioestimado' => 'required|numeric');
@@ -105,7 +105,8 @@ class IncidenciaController extends Controller
         $validator = Validator::make($request->all(), $datavalidate, $messages);
 
         if ($validator->fails()) { /*si hay errores devuelve a la vista*/
-            return redirect('incidencia/create')->withErrors($validator)->withInput();
+            //return redirect('incidencia/create')->withErrors($validator)->withInput();
+            return json_encode(array('error'=> $validator->errors() ) );
         } else { /*si no hay eerores crear el registro*/
 
             // DB::transaction(function () {
@@ -140,20 +141,25 @@ class IncidenciaController extends Controller
 
                 if ($Incidencia->save()) { /*aca hace el registro o insert */ 
 
+                    if(!empty($request->componente)){    
                     $idincidencia = $Incidencia::select('idincidencia')->orderBy('idincidencia', 'desc')->take(1)->first();
-                    foreach ($request->componente as $key => $componente) {
-                        $IncidenciaComponente = new IncidenciaComponente;
-                        $IncidenciaComponente->idcomponente = $componente;
-                        $IncidenciaComponente->idincidencia = $idincidencia->idincidencia;
-                        $IncidenciaComponente->serie_componente = $request->serie_componente[$componente];
-                        $IncidenciaComponente->save(); /*aca regista a la base de datos los componentes del equipo*/
+                                            
+                        foreach ($request->componente as $key => $componente) {
+                            $IncidenciaComponente = new IncidenciaComponente;
+                            $IncidenciaComponente->idcomponente = $componente;
+                            $IncidenciaComponente->idincidencia = $idincidencia->idincidencia;
+                            $IncidenciaComponente->serie_componente = $request->serie_componente[$componente];
+                            $IncidenciaComponente->save(); /*aca regista a la base de datos los componentes del equipo*/
+                        }
                     }
+
                 }
             }
 
             // });
 
-            return redirect('incidencia'); /*cunado termina de registrar te envia a la lista de registros*/
+            //return redirect('incidencia'); /*cunado termina de registrar te envia a la lista de registros*/
+            return json_encode(array('ok'=>'ok'));
 
         }
 
@@ -253,7 +259,8 @@ class IncidenciaController extends Controller
             DATE_FORMAT(cast(incidencia.created_at as datetime),"%d-%m-%Y %H:%i:%s") fecha_creacion,
             DATE_FORMAT(incidencia.fecha_completa,"%d-%m-%Y %H:%i:%s") fecha_completa'))
             ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
-            ->join('users', 'users.id', '=', 'incidencia.idtecnico'))
+            ->join('users', 'users.id', '=', 'incidencia.idtecnico')
+            ->orderBy('incidencia.idincidencia','desc'))
             ->addColumn('check', function ($incidencia) {
                 return '<label class="pos-rel"><input type="checkbox" class="ace"><span class="lbl" id="' . $incidencia->idincidencia . '"></span></label>';
             })
@@ -305,7 +312,8 @@ class IncidenciaController extends Controller
             ->join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
             ->join('users', 'users.id', '=', 'incidencia.idtecnico')
             ->where('users.id', Auth::user()->id)
-            ->orderBy('prioridad', 'desc'))
+            ->orderBy('prioridad', 'desc')
+            ->orderBy('incidencia.idincidencia','desc'))
             ->addColumn('check', function ($incidencia) {
                 return '<label class="pos-rel"><input type="checkbox" class="ace"><span class="lbl" id="' . $incidencia->idincidencia . '"></span></label>';
             })
@@ -358,8 +366,8 @@ class IncidenciaController extends Controller
         else
             return response()->json(
                 Incidencia::join('clientes', 'clientes.idcliente', '=', 'incidencia.idcliente')
-                ->join('incidencia-componente','incidencia-componente.idincidencia','=','incidencia.idincidencia')
-                ->join('componentes','incidencia-componente.idcomponente','=','componentes.idcomponente')
+                ->leftjoin('incidencia-componente','incidencia-componente.idincidencia','=','incidencia.idincidencia')
+                ->leftjoin('componentes','incidencia-componente.idcomponente','=','componentes.idcomponente')
                 ->where('incidencia.idincidencia', $id)
                 ->get());
     }

@@ -55,7 +55,7 @@ function contador_input(form) {
     $(form).find(':input').each(function() {
         var type = this.type;
         var tag = this.tagName.toLowerCase();
-        console.log(tag);
+        //console.log(tag);
         if (type === 'text' || type === 'password' || tag === 'textarea' || type === 'date' || tag === 'select' || type === 'number')
         {
             if (this.value === '') {
@@ -131,8 +131,7 @@ function registrar_ajax_cotizacion(form, c ) {
 
 function registrar_ajax(form, c) {
 
-
-    if (contador_input('#' + form) <= c) {
+    //if (contador_input('#' + form) <= c) {
 
         $('#' + form).submit(function(event) {
             var formData = new FormData(this);
@@ -146,31 +145,34 @@ function registrar_ajax(form, c) {
                 type: 'POST',
                 success: function(data) {
                     var datos = jQuery.parseJSON(data);
-                    if (datos.error) {
+                    var errors = datos.error;
 
-                        bootbox.alert(datos.error);
-                        //location.reload();
-                    }
+                    console.log(errors);
+                    if(datos.error){
+                         if(typeof errors.ruc_dni !="undefined"){
+                            $( "#errordniruc" ).text(errors.ruc_dni[0]).fadeIn( "slow" );
+                         } else{
+                            $( "#errordniruc" ).text('');
+                        }  
 
-                    else if (datos.dir) {
-                        $(".modal-body").text(datos.mensaje);
-                        $('#modal-success').modal('show');
+                        if(typeof errors.telefono !="undefined"){
+                            $( "#errortelefono" ).text(errors.telefono[0]).fadeIn( "slow" );
+                         } else{
+                            $( "#errortelefono" ).text('');
+                         }
+                    }
+                    else if(datos.ok){
+                       window.location = '/incidencia';
 
-                        $("#ok").click(function() {
-                            // $("#form")[0].reset();
-                            window.location = datos.dir;
-                        });
                     }
-                    else if (datos.datos) {
-                        console.log(data);
-                    }
+                    //console.log(datos);
                 }
             });
 
             event.preventDefault();
             event.unbind();
         });
-    }
+    //}
 }
 
 function registrar_modal(form, c) {
