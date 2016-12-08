@@ -3,7 +3,7 @@
 <table class="table table-bordered table-condensed table-striped">
 	<thead class="text-primary">
 		<th class="text-primary" style="text-align: center;">Item</th>
-		<th class="text-primary" style="text-align: center;">Fecha Trámite</th>
+		<th class="text-primary" style="text-align: center;">Fecha Límite</th>
 		<th class="text-primary" style="text-align: center;">Fecha Entrega</th>
 		<th class="text-primary" style="text-align: center;">N° Atención Realizada</th>
 		<th class="text-primary" style="text-align: center;">N° Atención Terminada</th>
