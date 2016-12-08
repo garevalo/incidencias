@@ -78,7 +78,7 @@
 				{ data: 'marca',   name: 'marca' },
 				{ data: 'modelo',  name: 'modelo' },
 				{ data: 'serie',  name: 'serie' },
-				{ data: 'estado',  name: 'estado' },
+				{ data: 'estado',  name: 'estado',searchable:false },
 				{ data: 'prioridad',  name: 'prioridad' },
 				{ data: 'edit',   name: 'edit',orderable:false,searchable:false }
 			];

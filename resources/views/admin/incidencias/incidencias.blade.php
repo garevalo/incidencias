@@ -81,7 +81,7 @@
 				{ data: 'modelo',  name: 'modelo' },
 				{ data: 'serie',  name: 'serie' },
 				{ data: 'tecnico',  name: 'name' },
-				{ data: 'estado',  name: 'estado' },
+				{ data: 'estado',  name: 'estado',searchable:false },
 				{ data: 'prioridad',  name: 'prioridad' },
 				{ data: 'fecha_creacion',  name: 'fecha_creacion',searchable:false },
 				{ data: 'fecha_completa',  name: 'fecha_completa',searchable:false },
