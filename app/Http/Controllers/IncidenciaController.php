@@ -54,7 +54,7 @@ class IncidenciaController extends Controller
         $data['tecnicos'] = User::where('idrol', 2)->where('estado',1)->get();
         //print_r($data['tecnicos']);
         $data['componentes'] = Componente::all();
-        $data['titulo'] = "Registrar Incidencia";
+        $data['titulo'] = "Registrar Atención";
         return view("admin.incidencias.nuevo", $data);
     }
 

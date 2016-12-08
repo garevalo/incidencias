@@ -17,8 +17,8 @@
 			<td><?= $incidencia->fecha_creacion ?></td>
 			<td><?= $incidencia->fecha_completa ?></td>
 			<td>1</td>
-			<td><?= $at=($incidencia->fecha_completa!='00-00-0000')?'1':'0' ?></td>
-			<td><?= ($incidencia->fecha_completa!='00-00-0000')?'100':'0' ?>%</td>
+			<td><?= $at=($incidencia->fecha_completa==$incidencia->fecha_creacion)?'1':'0' ?></td>
+			<td><?= ($incidencia->fecha_completa==$incidencia->fecha_creacion)?'100':'0' ?>%</td>
 		</tr>
 		<?php $cantidadAT = $cantidadAT+$at; } ?>
 		<tfoot>

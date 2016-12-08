@@ -1,6 +1,6 @@
 @extends("admin.template.main")
 
-@section("title","Lista de Incidencias")
+@section("title","Lista de Atenciones")
 
 @section("header")
 	@parent
